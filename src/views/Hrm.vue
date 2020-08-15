@@ -14,26 +14,11 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" sm="6" md="4" lg="3">
-          <v-card>
-            <v-card-text>
-              <div>Word of the Day</div>
-              <p class="display-1 text--primary">
-                be•nev•o•lent
-              </p>
-              <p>adjective</p>
-              <div class="text--primary">
-                well meaning and kindly.<br />
-                "a benevolent smile"
-              </div>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn text color="deep-purple accent-4">
-                Learn More
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-col>
+        <template v-for="user in users">
+          <v-col cols="12" sm="6" md="4" lg="3">
+            <hrm-users :key="user.id.value" :user="user"></hrm-users>
+          </v-col>
+        </template>
       </v-row>
     </v-container>
   </v-sheet>
@@ -44,12 +29,17 @@
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 import axios from "axios";
-const apiLink = "https://next.json-generator.com/api/json/get/VJZuWm-Mt";
+// const apiLink = "https://next.json-generator.com/api/json/get/VJZuWm-Mt";
+const apiLink = "https://randomuser.me/api/?results=10";
+import HrmUsers from "@/components/HrmUsers";
 export default {
   name: "Hrm",
-  components: {},
+  components: {
+    HrmUsers,
+  },
   data: () => ({
-    users: [],
+    users: null,
+    user: null,
     _pageTitle: "Hrm",
     get pageTitle() {
       return this._pageTitle;
@@ -63,15 +53,9 @@ export default {
   },
   created() {
     axios
-      .get(apiLink, {
-        headers: {
-          Authorization: "Bearer" + "Your Bearer Pssword",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Headers": "*",
-        },
-      })
+      .get(apiLink)
       .then((response) => {
-        this.users = response.data;
+        this.users = response.data.results;
         console.log(this.users);
       })
       .catch(function(error) {
