@@ -40,13 +40,15 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item v-else :key="item.text" link>
+          <v-list-item v-else :key="item.text" link :to="item.link">
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>
-                <router-link :to="item.link">{{ item.text }}</router-link>
+                <router-link :to="item.link" class="navigation__link">{{
+                  item.text
+                }}</router-link>
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -62,7 +64,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
-        <span class="hidden-sm-and-down">Google Contacts</span>
+        <span class="hidden-sm-and-down">{{ appTitle }}</span>
       </v-toolbar-title>
       <v-text-field
         flat
@@ -156,11 +158,12 @@ export default {
     source: String,
   },
   data: () => ({
+    appTitle: "Admin Vue",
     dialog: false,
     drawer: null,
     items: [
-      { icon: "mdi-contacts", text: "Home", link: "/" },
-      { icon: "mdi-history", text: "About", link: "/about" },
+      { icon: "mdi-contacts", text: "Dashboard", link: "/" },
+      { icon: "mdi-history", text: "HRM", link: "/hrm" },
     ],
     items2: [
       { icon: "mdi-contacts", text: "Home", to: "/" },
@@ -194,3 +197,8 @@ export default {
   }),
 };
 </script>
+<style lang="scss">
+.navigation__link {
+  text-decoration: none;
+}
+</style>
