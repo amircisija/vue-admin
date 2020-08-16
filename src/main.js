@@ -5,7 +5,8 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import "./assets/scss/style.scss";
-import '@fortawesome/fontawesome-free/css/all.css' // Ensure you are using css-loader
+import '@fortawesome/fontawesome-free/css/all.css';
+
 Vue.config.productionTip = false;
 new Vue({
   router,

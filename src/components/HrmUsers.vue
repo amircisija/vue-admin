@@ -2,7 +2,7 @@
   <v-card>
     <v-card-text>
       <p class="subtitle-1 font-weight-bold text--primary">
-        {{ getFullName }}
+        {{ user.id.value }} - {{ getFullName }}
       </p>
       <v-list-item-avatar tile size="80" color="grey" class="card__avatar"
         ><v-img :src="user.picture.thumbnail"></v-img
@@ -38,7 +38,12 @@
       </v-list-item-group>
     </v-list>
     <v-card-actions>
-      <v-btn text color="deep-purple accent-4">
+      <v-btn
+        text
+        color="deep-purple accent-4"
+        @click="handleSelectUser(user)"
+        :user="user"
+      >
         View details
       </v-btn>
     </v-card-actions>
@@ -54,13 +59,18 @@ export default {
   },
   data: () => ({
     proffesion: ["Call Agent", "Support", "Developer"],
-    chosenName: "",
+    selectedUser: null,
   }),
   methods: {
     getRandomProffesion() {
       return this.proffesion[
         Math.floor(Math.random() * this.proffesion.length)
       ];
+    },
+    handleSelectUser(user) {
+      console.log(user);
+      this.$store.dispatch("SELECT_USER", this.user);
+      this.$router.push({ path: `/user/${this.user.login.username}` });
     },
   },
   computed: {
@@ -102,27 +112,18 @@ export default {
   position: absolute;
   top: 0;
   right: 10px;
+  border-radius: 50% !important;
 }
 .v-application--is-ltr .v-list-item__action:first-child,
 .v-application--is-ltr .v-list-item__icon:first-child {
-  margin-right: 5px;
+  margin-right: 0;
 }
 .v-icon.v-icon {
-  align-items: center;
-  display: inline-flex;
-  font-feature-settings: "liga";
   font-size: 16px;
-  justify-content: center;
-  letter-spacing: normal;
-  line-height: 1;
-  position: relative;
-  text-indent: 0;
-  transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
-  vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   margin: 0 auto;
+}
+.v-application .subtitle-1 {
+  margin-bottom: 0;
 }
 </style>

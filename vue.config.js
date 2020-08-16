@@ -1,2 +1,5 @@
-export const lintOnSave = false;
-export const transpileDependencies = ["vuetify"];
+module.exports = {
+  lintOnSave: false,
+  transpileDependencies: ["vuetify"],
+  transpileDependencies: ['vuex-persist']
+};
