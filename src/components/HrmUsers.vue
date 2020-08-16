@@ -2,7 +2,7 @@
   <v-card>
     <v-card-text>
       <p class="subtitle-1 font-weight-bold text--primary">
-        {{ user.id.value }} - {{ getFullName }}
+        {{ getFullName }}
       </p>
       <v-list-item-avatar tile size="80" color="grey" class="card__avatar"
         ><v-img :src="user.picture.thumbnail"></v-img
@@ -69,7 +69,7 @@ export default {
     },
     handleSelectUser(user) {
       console.log(user);
-      this.$store.dispatch("SELECT_USER", this.user);
+      this.$store.dispatch("SELECT_USER", user);
       this.$router.push({ path: `/user/${this.user.login.username}` });
     },
   },
@@ -104,10 +104,7 @@ export default {
 .fade-leave-active {
   opacity: 0;
 }
-.v-card {
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;
-}
+
 .card__avatar {
   position: absolute;
   top: 0;

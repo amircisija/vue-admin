@@ -15,8 +15,8 @@
       </v-row>
       <v-row>
         <template v-for="user in users">
-          <v-col cols="12" sm="6" md="4" lg="3">
-            <hrm-users :key="user.id.value" :user="user"></hrm-users>
+          <v-col cols="12" sm="6" md="4" lg="3" :key="user.id.value">
+            <hrm-users :user="user"></hrm-users>
           </v-col>
         </template>
       </v-row>

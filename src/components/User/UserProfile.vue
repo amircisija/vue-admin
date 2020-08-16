@@ -1,8 +1,27 @@
 <template>
-  <div>
-    <h1>User with id {{ userId }}</h1>
-    <h5>{{ currentUser }}</h5>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <h2>Profile</h2>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="3">
+        <v-card>
+          <v-card-text>
+            <v-img :src="currentUser.picture.large"></v-img>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="3">
+        <v-card>
+          <v-card-text>
+            <h4>{{ currentUser.name.first }}</h4>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
@@ -13,9 +32,6 @@ export default {
       userId: this.$route.params.id,
       currentUser: null,
     };
-  },
-  computed: {
-    user() {},
   },
   mounted() {
     return (this.currentUser = this.$store.getters.user);
