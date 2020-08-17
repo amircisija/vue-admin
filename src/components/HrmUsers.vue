@@ -42,7 +42,6 @@
         text
         color="deep-purple accent-4"
         @click="handleSelectUser(user)"
-        :user="user"
       >
         View details
       </v-btn>
@@ -68,7 +67,7 @@ export default {
       ];
     },
     handleSelectUser(user) {
-      console.log(user);
+      console.log('Selected User :' + JSON.stringify(user));
       this.$store.dispatch("SELECT_USER", user);
       this.$router.push({ path: `/user/${this.user.login.username}` });
     },

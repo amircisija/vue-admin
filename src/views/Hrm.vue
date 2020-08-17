@@ -28,17 +28,17 @@
 // @ is an alias to /src
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
+import { mapState } from "vuex";
 import axios from "axios";
 // const apiLink = "https://next.json-generator.com/api/json/get/VJZuWm-Mt";
-const apiLink = "https://randomuser.me/api/?results=10";
+// const apiLink = "https://randomuser.me/api/?results=10";
 import HrmUsers from "@/components/HrmUsers";
 export default {
   name: "Hrm",
   components: {
-    HrmUsers,
+    HrmUsers
   },
   data: () => ({
-    users: null,
     user: null,
     _pageTitle: "Hrm",
     get pageTitle() {
@@ -46,13 +46,18 @@ export default {
     },
     set pageTitle(value) {
       this._pageTitle = value;
-    },
+    }
   }),
   beforeCreate() {
     console.log("Before Created");
   },
+  computed: mapState(["users"]),
   created() {
-    axios
+    console.log("Created - Sending Api Request");
+    const newLocal="LOAD_USERS";
+    this.$store.dispatch(newLocal);
+
+    /*     axios
       .get(apiLink)
       .then((response) => {
         this.users = response.data.results;
@@ -60,7 +65,7 @@ export default {
       })
       .catch(function(error) {
         console.log(error);
-      });
-  },
+      });  */
+  }
 };
 </script>
