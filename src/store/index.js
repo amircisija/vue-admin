@@ -25,6 +25,9 @@ export default new Vuex.Store({
     },
     saveUsers(state, users) {
       state.users = users;
+    },
+    deleteUser(state) {
+      state.selectedUser = null;
     }
   },
   getters: {
@@ -33,11 +36,17 @@ export default new Vuex.Store({
     },
     fullUserName(state) {
       return state.selectedUser.name.first + ' ' + state.selectedUser.name.last
+    },
+    getUserDateOfBirth(state) {
+      return state.selectedUser.dob.date;
     }
   },
   actions: {
     SELECT_USER({ commit }, user) {
       commit("selectUser", user)
+    },
+    DELETE_USER({commit}) {
+      commit("deleteUser")
     },
     LOAD_USERS({commit}) {
       console.log("Api Call recieved");
