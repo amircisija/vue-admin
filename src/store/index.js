@@ -34,6 +34,9 @@ export default new Vuex.Store({
     user(state) {
       return state.selectedUser;
     },
+    getUsers(state) {
+      return state.users
+    },
     fullUserName(state) {
       return state.selectedUser.name.first + ' ' + state.selectedUser.name.last
     },
@@ -42,13 +45,19 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    SELECT_USER({ commit }, user) {
+    SELECT_USER({
+      commit
+    }, user) {
       commit("selectUser", user)
     },
-    DELETE_USER({commit}) {
+    DELETE_USER({
+      commit
+    }) {
       commit("deleteUser")
     },
-    LOAD_USERS({commit}) {
+    LOAD_USERS({
+      commit
+    }) {
       console.log("Api Call recieved");
       axios
         .get(apiLink)

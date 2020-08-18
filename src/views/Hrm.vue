@@ -1,5 +1,5 @@
 <template>
-  <v-sheet>
+  <v-sheet class="page__wrapper--sheet">
     <v-container>
       <v-row>
         <v-col>
@@ -29,7 +29,6 @@
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 import { mapState } from "vuex";
-import axios from "axios";
 // const apiLink = "https://next.json-generator.com/api/json/get/VJZuWm-Mt";
 // const apiLink = "https://randomuser.me/api/?results=10";
 import HrmUsers from "@/components/HrmUsers";
@@ -54,7 +53,7 @@ export default {
   computed: mapState(["users"]),
   created() {
     console.log("Created - Sending Api Request");
-    const newLocal="LOAD_USERS";
+    const newLocal = "LOAD_USERS";
     this.$store.dispatch(newLocal);
 
     /*     axios

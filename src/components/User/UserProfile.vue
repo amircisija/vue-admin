@@ -8,54 +8,108 @@
           class="mb-4"
           @click="handleSelectUser(currentUser)"
         >
-          <v-icon color="purple darken-2" small class="mr-2"
-            >fas fa-chevron-left</v-icon
-          >
-          Go Back
+          <v-icon color="purple darken-2" small class="mr-2">fas fa-chevron-left</v-icon>Go Back
         </v-btn>
-        <h2 class="text-h4">Profile</h2>
+        <h2>Profile</h2>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="2">
+      <v-col>
         <v-card>
-          <v-img :src="currentUser.picture.large"></v-img>
-        </v-card>
-      </v-col>
-      <v-col cols="6">
-        <v-card>
-          <v-card-text>
-            <h4 class="text-h5 text-deep-purple">
-              {{ currentUserFullName }}
-            </h4>
-            <v-divider class="my-5"></v-divider>
-            <h6 class="subtitle-2" color="deep-purple accent-4">
-              <span class="user__profile--info">Date of Birth: </span>
-            </h6>
-            <p>{{ getUserDateOfBirth }}</p>
-            <h6 class="subtitle-2">
-              <span class="user__profile--info">Position: </span>
-            </h6>
-            <p>{{ getRandomProffesion() }}</p>
-            <h6 class="subtitle-2">
-              <span class="user__profile--info">Telefon: </span>
-            </h6>
-            <p>{{ currentUser.cell }}</p>
-
-            <h6 class="subtitle-2">
-              <span class="user__profile--info">Address: </span>
-            </h6>
-            <p>{{ getAddress }}</p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="4">
-        <v-card>
-          <v-card-text>
-            <h4 class="text-h5 text-deep-purple">User Files</h4>
-            <v-divider class="my-5"></v-divider>
-            <user-files></user-files>
-          </v-card-text>
+          <v-row>
+            <v-col cols="12" sm="2">
+              <v-card-text>
+                <v-img :src="currentUser.picture.large" class="mb-3"></v-img>
+                <v-btn color="deep-purple accent-4" class="white--text">Edit</v-btn>
+              </v-card-text>
+            </v-col>
+            <v-col cols="12" sm="7">
+              <v-row class="mb-0 pb-0">
+                <v-col class="mb-0 pb-0">
+                  <v-card-text class="mb-0 pb-0">
+                    <h4 class="text-h5 text-deep-purple">
+                      <v-icon>mdi-account</v-icon>
+                      {{ currentUserFullName }}
+                    </h4>
+                    <v-divider class="mt-2"></v-divider>
+                  </v-card-text>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12" sm="6">
+                  <v-card-text class="user__profile--info--wrapper">
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Date of Birth:
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ getUserDateOfBirth }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Position:
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ getRandomProffesion() }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Telefon:
+                        <span class="user__profile--info float-right">{{ currentUser.cell }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Address:
+                        <span class="user__profile--info float-right">{{ getAddress }}</span>
+                      </h6>
+                    </div>
+                  </v-card-text>
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-card-text class="user__profile--info--wrapper">
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Date of Birth:
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ getUserDateOfBirth }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Position:
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ getRandomProffesion() }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Telefon:
+                        <span class="user__profile--info float-right">{{ currentUser.cell }}</span>
+                      </h6>
+                    </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Address:
+                        <span class="user__profile--info float-right">{{ getAddress }}</span>
+                      </h6>
+                    </div>
+                  </v-card-text>
+                </v-col>
+              </v-row>
+            </v-col>
+            <v-col cols="12" sm="3">
+              <v-card-text>
+                <h4 class="text-h5 text-deep-purple">User Files</h4>
+                <v-divider class="my-5"></v-divider>
+                <user-files></user-files>
+              </v-card-text>
+            </v-col>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -67,13 +121,13 @@ import moment from "moment";
 export default {
   name: "UserProfile",
   components: {
-    UserFiles,
+    UserFiles
   },
   data: function() {
     return {
       proffesion: ["Call Agent", "Support", "Developer"],
       //id is name of the dynamic segment we created in router
-      userId: this.$route.params.id,
+      userId: this.$route.params.id
     };
   },
   methods: {
@@ -86,7 +140,7 @@ export default {
       return this.proffesion[
         Math.floor(Math.random() * this.proffesion.length)
       ];
-    },
+    }
   },
   computed: {
     currentUser() {
@@ -107,18 +161,28 @@ export default {
         ", " +
         this.currentUser.location.city
       );
-    },
-  },
+    }
+  }
   /*   mounted() {
     return (this.currentUser = this.$store.getters.user);
   }, */
 };
 </script>
 <style lang="scss">
-.user__profile--info {
-  font-weight: 600;
-}
 .text-deep-purple {
   color: #6200ea;
+}
+
+.user__profile--info--wrapper {
+  h6 {
+    font-weight: 600 !important;
+  }
+  .user__profile--info {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  p {
+    font-size: 0.875rem;
+  }
 }
 </style>

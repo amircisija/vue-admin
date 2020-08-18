@@ -33,46 +33,46 @@ export default {
       "Cips",
       "Porezna",
       "Prijava",
-      "Odjava",
+      "Odjava"
     ],
     files: [
       {
         icon: require("@/assets/icon_1.svg"),
         location: require("@/assets/file-1.pdf"),
-        text: "File 1",
+        text: "File 1"
       },
       {
         icon: require("@/assets/icon_1.svg"),
         location: require("@/assets/file-3.pdf"),
-        text: "File 2",
+        text: "File 2"
       },
       {
         icon: require("@/assets/icon_1.svg"),
         location: require("@/assets/file-3.pdf"),
-        text: "File 3",
-      },
+        text: "File 3"
+      }
     ],
     items: [
       {
         icon: "mdi-wifi",
-        text: "Wifi",
+        text: "Wifi"
       },
       {
         icon: "mdi-bluetooth",
-        text: "Bluetooth",
+        text: "Bluetooth"
       },
       {
         icon: "mdi-chart-donut",
-        text: "Data Usage",
-      },
+        text: "Data Usage"
+      }
     ],
-    model: 1,
+    model: 1
   }),
   methods: {
     getRandomProffesion() {
       return this.fileNames[Math.floor(Math.random() * this.fileNames.length)];
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

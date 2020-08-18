@@ -1,16 +1,15 @@
 module.exports = {
   lintOnSave: false,
-  transpileDependencies: ["vuetify", 'vuex-persist'],
-  chainWebpack: (config) => {
-    const svgRule = config.module.rule('svg');
-
+  transpileDependencies: ["vuetify", "vuex-persist"],
+  chainWebpack: config => {
+    const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
-
-    svgRule
-      .use('babel-loader')
-      .loader('babel-loader')
-      .end()
-      .use('vue-svg-loader')
-      .loader('vue-svg-loader');
-  },
+    // add replacement loader(s)
+    svgRule.use("vue-svg-loader").loader("vue-svg-loader");
+    config.module
+      .rule("pdf")
+      .test(/\.pdf$/)
+      .use("file-loader")
+      .loader("file-loader");
+  }
 };

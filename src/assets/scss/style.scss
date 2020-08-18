@@ -2,4 +2,16 @@
 .v-card {
   border-radius: 0.5rem;
   box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;
+  background: #fff !important;
+}
+
+.v-main__wrap {
+  flex: 1 1 auto;
+  max-width: 100%;
+  position: relative;
+  background: #f6f6f6;
+}
+
+.page__wrapper--sheet {
+  background: #f6f6f6 !important;
 }
