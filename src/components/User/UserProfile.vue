@@ -80,7 +80,9 @@
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         ID:
-                        <span class="user__profile--info float-right">{{ currentUser.id.name }}</span>
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ currentUser.login.uuid }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
@@ -97,7 +99,7 @@
                         Position:
                         <span
                           class="user__profile--info float-right"
-                        >{{ getRandomProffesion() }}</span>
+                        >{{ getRandomProffesion }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
@@ -145,7 +147,6 @@ export default {
   },
   methods: {
     handleSelectUser(currentUser) {
-      console.log("Selected User :" + JSON.stringify(currentUser));
       this.$store.dispatch("DELETE_USER");
       this.$router.push({ path: "/hrm" });
     },
@@ -154,14 +155,14 @@ export default {
       this.$router.push({
         path: `/user/edit/${this.currentUser.login.username}`
       });
-    },
+    }
+  },
+  computed: {
     getRandomProffesion() {
       return this.proffesion[
         Math.floor(Math.random() * this.proffesion.length)
       ];
-    }
-  },
-  computed: {
+    },
     currentUser() {
       return this.$store.getters.user;
     },

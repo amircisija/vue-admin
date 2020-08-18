@@ -20,13 +20,6 @@
             <v-col cols="12" sm="2">
               <v-card-text>
                 <v-img :src="currentUser.picture.large" class="mb-3"></v-img>
-                <v-btn
-                  color="deep-purple accent-4"
-                  class="white--text"
-                  @click="editCurrentUser(currentUser)"
-                >
-                  <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
-                </v-btn>
               </v-card-text>
             </v-col>
             <v-col cols="12" sm="7">
@@ -45,26 +38,69 @@
                         </v-col>
                       </v-row>
 
-                      <v-form @submit.prevent="updateUser(currentUser);">
+                      <v-form @submit.prevent>
                         <v-row>
-                          <v-col>
+                          <v-col cols="12" sm="6">
                             <v-text-field
-                              :counter="10"
-                              :value="currentUser.name.first"
+                              :counter="20"
+                              v-model="currentUser.name.first"
                               label="First name"
                               required
                             ></v-text-field>
                           </v-col>
-                          <v-col>
+                          <v-col cols="12" sm="6">
                             <v-text-field
-                              :counter="10"
-                              :value="currentUser.name.last"
+                              :counter="20"
+                              v-model="currentUser.name.last"
                               label="Last name"
                               required
                             ></v-text-field>
                           </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-text-field
+                              :counter="30"
+                              v-model="currentUser.email"
+                              label="Email"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-text-field
+                              :counter="20"
+                              v-model="currentUser.phone"
+                              label="Telefon"
+                              required
+                            ></v-text-field>
+                          </v-col>
+
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="50"
+                              v-model="currentUser.location.street.name"
+                              label="Address"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="10"
+                              v-model="currentUser.location.street.number"
+                              label="Address Number"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="50"
+                              v-model="currentUser.location.city"
+                              label="Town"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col>
+                            <v-btn @click="updateUser">Update User</v-btn>
+                          </v-col>
                         </v-row>
-                        <input type="submit" value="Submit" />
                       </v-form>
                     </v-container>
                   </v-card-text>
@@ -126,7 +162,7 @@
                         Position:
                         <span
                           class="user__profile--info float-right"
-                        >{{ getRandomProffesion() }}</span>
+                        >{{ getRandomProffesion }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
@@ -163,7 +199,7 @@ import UserFiles from "@/components/User/UserFiles";
 import moment from "moment";
 import { mapGetters, mapActions } from "vuex";
 export default {
-  name: "UserProfile",
+  name: "EditUser",
   components: {
     UserFiles
   },
@@ -175,7 +211,9 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["updateUser"]),
+    updateUser(){
+      this.$store.dispatch('UPDATE_USER', this.currentUser)
+    },
 
     handleSelectUser(currentUser) {
       console.log("Selected User :" + JSON.stringify(currentUser));
@@ -186,11 +224,6 @@ export default {
       this.$router.push({
         path: `/user/edit/${this.currentUser.login.username}`
       });
-    },
-    getRandomProffesion() {
-      return this.proffesion[
-        Math.floor(Math.random() * this.proffesion.length)
-      ];
     }
   },
   computed: {
@@ -210,6 +243,11 @@ export default {
       set(value) {
         this.$store.commit("updateLastName", value);
       }
+    },
+    getRandomProffesion() {
+      return this.proffesion[
+        Math.floor(Math.random() * this.proffesion.length)
+      ];
     },
     currentUserFullName() {
       return this.$store.getters.fullUserName;

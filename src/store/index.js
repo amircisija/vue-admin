@@ -35,8 +35,8 @@ export default new Vuex.Store({
     updateLastName(state, value) {
       state.selectedUser.name.last = value;
     },
-    updateUserList(state, currentUser) {
-      state.selectedUser = currentUser
+    updateUser(state, currentUser) {
+      Object.assign(state.selectedUser, currentUser);
     }
   },
   getters: {
@@ -81,10 +81,8 @@ export default new Vuex.Store({
           commit("saveUsers", response.data.results);
         })
     },
-    async updateUser({
-      commit
-    }, currentUser) {
-      commit("updateUserList", currentUser)
+    async UPDATE_USER({ commit }, currentUser) {
+      commit("updateUser", currentUser)
     },
 
   },
