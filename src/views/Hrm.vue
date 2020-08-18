@@ -35,7 +35,7 @@ import HrmUsers from "@/components/HrmUsers";
 export default {
   name: "Hrm",
   components: {
-    HrmUsers
+    HrmUsers,
   },
   data: () => ({
     user: null,
@@ -45,7 +45,7 @@ export default {
     },
     set pageTitle(value) {
       this._pageTitle = value;
-    }
+    },
   }),
   beforeCreate() {
     console.log("Before Created");
@@ -65,6 +65,6 @@ export default {
       .catch(function(error) {
         console.log(error);
       });  */
-  }
+  },
 };
 </script>

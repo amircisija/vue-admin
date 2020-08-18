@@ -6,35 +6,67 @@
         <v-progress-circular indeterminate size="64"></v-progress-circular>
       </v-overlay>
     </transition>
-
-    <transition-group name="fade" enter-active-class="animated fadeInUp">
-      <v-card
-        style="max-width: 40%;"
-        v-for="user in users"
-        :key="user.name.first"
-      >
-        <v-card-title>
-          <h4>{{ user.name.first }}</h4>
-        </v-card-title>
-      </v-card>
-    </transition-group>
+    <v-container>
+      <v-row>
+        <v-col sm="6">
+          <v-text-field
+            v-model="user.name.first"
+            @keyup.enter="addUser"
+          ></v-text-field>
+        </v-col>
+        <v-col sm="6">
+          <v-text-field
+            v-model="user.name.last"
+            @keyup.enter="addUser"
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <template v-for="user in users">
+          <v-col cols="12" sm="6" md="4" lg="3" :key="user.id.value">
+            <hrm-users :user="user"></hrm-users>
+          </v-col>
+        </template>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
 <script>
-import Api from "@/service/api";
 import axios from "axios";
+import HrmUsers from "@/components/HrmUsers";
 // @ is an alias to /src
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 export default {
   name: "Test",
+  components: {
+    HrmUsers,
+  },
   data: () => ({
     users: [],
     overlay: false,
+    user: {
+      name: {
+        first: null,
+        last: null,
+      },
+    },
     isLoading: false,
   }),
-
+  methods: {
+    addUser() {
+      axios.post("/api/users", this.user).then((response) => {
+        this.users.push({
+          name: {
+            first: this.user.name.first,
+            last: this.user.name.last,
+          },
+        });
+        console.log(response.data);
+      });
+    },
+  },
   created() {
     /* Api()
       .get("/users")
@@ -49,12 +81,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.v-sheet.v-card {
-  border-radius: 4px;
-  display: inline-block;
-  margin: 20px;
-}
+<style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
