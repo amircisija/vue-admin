@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h2>Home Page</h2>
+  <div class="test">
+    <h2>Test Page</h2>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed ut, adipisci
       molestias nisi iure porro ab nesciunt, quo ex id voluptates quas
@@ -15,9 +15,15 @@ import Api from "@/service/api";
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 export default {
-  name: "Home",
+  name: "Test",
   data: ()=> ({
-    users: Api().get('/users')
-  })
+    users: []
+  }),
+  mounted() {
+    Api().get('/users').then((response) => {
+      debugger
+      this.users = response.data;
+    })
+  }
 };
 </script>

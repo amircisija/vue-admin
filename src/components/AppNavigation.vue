@@ -173,6 +173,7 @@ export default {
           { icon: "mdi-account-plus", text: "Add User", link: "/add-user" },
         ],
       },
+      { icon: "mdi-contacts", text: "Test", link: "/test" }
     ],
     items2: [
       { icon: "mdi-contacts", text: "Home", to: "/" },
