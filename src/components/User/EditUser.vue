@@ -41,17 +41,31 @@
                     <v-container>
                       <v-row>
                         <v-col>
-                          <v-text-field
-                            :counter="10"
-                            v-model="firstName"
-                            label="First name"
-                            required
-                          ></v-text-field>
-                        </v-col>
-                        <v-col>
-                          <v-text-field :counter="10" v-model="lastName" label="Last name" required></v-text-field>
+                          <h3>General Information</h3>
                         </v-col>
                       </v-row>
+
+                      <v-form @submit.prevent="updateUser(currentUser);">
+                        <v-row>
+                          <v-col>
+                            <v-text-field
+                              :counter="10"
+                              :value="currentUser.name.first"
+                              label="First name"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col>
+                            <v-text-field
+                              :counter="10"
+                              :value="currentUser.name.last"
+                              label="Last name"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <input type="submit" value="Submit" />
+                      </v-form>
                     </v-container>
                   </v-card-text>
                 </v-col>
@@ -147,6 +161,7 @@
 <script>
 import UserFiles from "@/components/User/UserFiles";
 import moment from "moment";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "UserProfile",
   components: {
@@ -160,6 +175,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["updateUser"]),
+
     handleSelectUser(currentUser) {
       console.log("Selected User :" + JSON.stringify(currentUser));
       this.$router.push({ path: `/user/${this.currentUser.login.username}` });
@@ -177,9 +194,7 @@ export default {
     }
   },
   computed: {
-    currentUser() {
-      return this.$store.getters.user;
-    },
+    ...mapGetters(["currentUser"]),
     firstName: {
       get() {
         return this.$store.state.selectedUser.name.first;

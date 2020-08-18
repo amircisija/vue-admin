@@ -34,10 +34,16 @@ export default new Vuex.Store({
     },
     updateLastName(state, value) {
       state.selectedUser.name.last = value;
+    },
+    updateUserList(state, currentUser) {
+      state.selectedUser = currentUser
     }
   },
   getters: {
     user(state) {
+      return state.selectedUser;
+    },
+    currentUser(state) {
       return state.selectedUser;
     },
     getUsers(state) {
@@ -74,7 +80,13 @@ export default new Vuex.Store({
           console.log("Api Call pre commit");
           commit("saveUsers", response.data.results);
         })
-    }
+    },
+    async updateUser({
+      commit
+    }, currentUser) {
+      commit("updateUserList", currentUser)
+    },
+
   },
   modules: {},
   plugins: [vuexLocal.plugin]
