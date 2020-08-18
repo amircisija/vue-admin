@@ -1,19 +1,17 @@
 <template>
   <v-card>
     <v-card-text>
-      <p class="subtitle-1 font-weight-bold text--primary">
-        {{ getFullName }}
-      </p>
-      <v-list-item-avatar tile size="80" color="grey" class="card__avatar"
-        ><v-img :src="user.picture.thumbnail"></v-img
-      ></v-list-item-avatar>
+      <p class="subtitle-1 font-weight-bold text--primary">{{ getFullName }}</p>
+      <v-list-item-avatar tile size="80" color="grey" class="card__avatar">
+        <v-img :src="user.picture.thumbnail"></v-img>
+      </v-list-item-avatar>
       <div>{{ getRandomProffesion() }}</div>
     </v-card-text>
     <v-list dense>
       <v-list-item-group color="primary">
         <v-list-item>
           <v-list-item-icon class="text-center">
-            <v-icon color="purple darken-2">fas fa-map-marker-alt</v-icon>
+            <v-icon color="purple darken-2">mdi-map-marker</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ getAddress }}</v-list-item-title>
@@ -21,7 +19,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon color="purple darken-2">fas fa-envelope</v-icon>
+            <v-icon color="purple darken-2">mdi-email-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ user.email }}</v-list-item-title>
@@ -29,7 +27,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon color="purple darken-2">fas fa-phone</v-icon>
+            <v-icon color="purple darken-2">mdi-cellphone</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>{{ user.phone }}</v-list-item-title>
@@ -38,13 +36,7 @@
       </v-list-item-group>
     </v-list>
     <v-card-actions>
-      <v-btn
-        text
-        color="deep-purple accent-4"
-        @click="handleSelectUser(user)"
-      >
-        View details
-      </v-btn>
+      <v-btn text color="deep-purple accent-4" @click="handleSelectUser(user)">View details</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -53,12 +45,12 @@ export default {
   name: "HrmUser",
   props: {
     user: {
-      type: Object,
-    },
+      type: Object
+    }
   },
   data: () => ({
     proffesion: ["Call Agent", "Support", "Developer"],
-    selectedUser: null,
+    selectedUser: null
   }),
   methods: {
     getRandomProffesion() {
@@ -67,10 +59,10 @@ export default {
       ];
     },
     handleSelectUser(user) {
-      console.log('Selected User :' + JSON.stringify(user));
+      console.log("Selected User :" + JSON.stringify(user));
       this.$store.dispatch("SELECT_USER", user);
       this.$router.push({ path: `/user/${this.user.login.username}` });
-    },
+    }
   },
   computed: {
     chosenProf() {
@@ -87,8 +79,8 @@ export default {
         ", " +
         this.user.location.city
       );
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

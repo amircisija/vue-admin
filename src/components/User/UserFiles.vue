@@ -15,8 +15,7 @@
                 target="_blank"
                 class="nuxt__file--link"
                 :href="item.location"
-                >{{ getRandomProffesion() }}</a
-              >
+              >{{ getRandomProffesion() }}</a>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>

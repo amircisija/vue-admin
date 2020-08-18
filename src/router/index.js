@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Hrm from "../views/Hrm.vue";
 import UserProfile from '../components/User/UserProfile.vue';
-import AddUser from '../components/User/AddUser.vue';
 Vue.use(VueRouter);
 
 const routes = [{
@@ -24,6 +23,12 @@ const routes = [{
     path: "/user/:id",
     name: "UserProfile",
     component: UserProfile,
+    props: true
+  },
+  {
+    path: "/user/edit/:id",
+    name: "EditUser",
+    component: () => import("../components/User/EditUser.vue"),
     props: true
   },
   {

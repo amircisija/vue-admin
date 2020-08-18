@@ -28,6 +28,12 @@ export default new Vuex.Store({
     },
     deleteUser(state) {
       state.selectedUser = null;
+    },
+    updateFirstName(state, value) {
+      state.selectedUser.name.first = value;
+    },
+    updateLastName(state, value) {
+      state.selectedUser.name.last = value;
     }
   },
   getters: {
@@ -42,6 +48,9 @@ export default new Vuex.Store({
     },
     getUserDateOfBirth(state) {
       return state.selectedUser.dob.date;
+    },
+    getUserRegistrationDate(state) {
+      return state.selectedUser.registered.date;
     }
   },
   actions: {

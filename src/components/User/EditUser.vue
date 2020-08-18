@@ -38,6 +38,21 @@
                       {{ currentUserFullName }}
                     </h4>
                     <v-divider class="mt-2"></v-divider>
+                    <v-container>
+                      <v-row>
+                        <v-col>
+                          <v-text-field
+                            :counter="10"
+                            v-model="firstName"
+                            label="First name"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                        <v-col>
+                          <v-text-field :counter="10" v-model="lastName" label="Last name" required></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
                   </v-card-text>
                 </v-col>
               </v-row>
@@ -139,6 +154,7 @@ export default {
   },
   data: function() {
     return {
+      firstname: null,
       proffesion: ["Call Agent", "Support", "Developer"],
       userId: this.$route.params.id
     };
@@ -146,8 +162,7 @@ export default {
   methods: {
     handleSelectUser(currentUser) {
       console.log("Selected User :" + JSON.stringify(currentUser));
-      this.$store.dispatch("DELETE_USER");
-      this.$router.push({ path: "/hrm" });
+      this.$router.push({ path: `/user/${this.currentUser.login.username}` });
     },
     editCurrentUser(currentUser) {
       console.log("Selected User :" + JSON.stringify(currentUser));
@@ -164,6 +179,22 @@ export default {
   computed: {
     currentUser() {
       return this.$store.getters.user;
+    },
+    firstName: {
+      get() {
+        return this.$store.state.selectedUser.name.first;
+      },
+      set(value) {
+        this.$store.commit("updateFirstName", value);
+      }
+    },
+    lastName: {
+      get() {
+        return this.$store.state.selectedUser.name.last;
+      },
+      set(value) {
+        this.$store.commit("updateLastName", value);
+      }
     },
     currentUserFullName() {
       return this.$store.getters.fullUserName;
