@@ -10,14 +10,11 @@
 </template>
 
 <script>
-import Api from "@/service/api";
 // @ is an alias to /src
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 export default {
   name: "Home",
-  data: ()=> ({
-    users: Api().get('/users')
-  })
+  components: {},
 };
 </script>

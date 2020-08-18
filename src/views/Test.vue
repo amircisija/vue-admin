@@ -11,6 +11,7 @@
 
 <script>
 import Api from "@/service/api";
+import axios from "axios";
 // @ is an alias to /src
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
@@ -19,11 +20,16 @@ export default {
   data: ()=> ({
     users: []
   }),
-  mounted() {
-    Api().get('/users').then((response) => {
-      debugger
-      this.users = response.data;
-    })
+  created() {
+    /* Api()
+      .get("/users")
+      .then(response => {
+      console.log(response.data);
+    }) */
+    axios.get('/api/users')
+      .then(response => {
+        console.log(response.data)
+      })
   }
 };
 </script>
