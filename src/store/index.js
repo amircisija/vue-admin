@@ -17,6 +17,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
   state: {
     users: null,
+    localUsers: null,
     selectedUser: null
   },
   mutations: {
@@ -25,6 +26,8 @@ export default new Vuex.Store({
     },
     saveUsers(state, users) {
       state.users = users;
+      let cloneSheepsES6 = [...users];
+      state.localUsers = cloneSheepsES6;
     },
     deleteUser(state) {
       state.selectedUser = null;
@@ -48,6 +51,9 @@ export default new Vuex.Store({
     },
     getUsers(state) {
       return state.users
+    },
+    getLocalUsers(state){
+      return state.localUsers;
     },
     fullUserName(state) {
       return state.selectedUser.name.first + ' ' + state.selectedUser.name.last

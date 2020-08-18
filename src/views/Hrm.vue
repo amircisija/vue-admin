@@ -50,7 +50,7 @@ export default {
   beforeCreate() {
     console.log("Before Created");
   },
-  computed: mapState(["users"]),
+  computed: mapState(["users", "localUsers"]),
   created() {
     console.log("Created - Sending Api Request");
     const newLocal = "LOAD_USERS";

@@ -10,7 +10,7 @@
         >
           <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
         </v-btn>
-        <h2>Profile</h2>
+        <h2>Profile {{ currentUser.name.first }} {{ currentUser.name.last }}</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -153,7 +153,7 @@ export default {
     editCurrentUser(currentUser) {
       console.log("Selected User :" + JSON.stringify(currentUser));
       this.$router.push({
-        path: `/user/edit/${this.currentUser.login.username}`
+        path: `/user/edit/${this.currentUser.login.uuid}`
       });
     }
   },
@@ -163,6 +163,10 @@ export default {
         Math.floor(Math.random() * this.proffesion.length)
       ];
     },
+    // Option 2 to get user
+/*     crrentUserNew(){
+      return this.$store.state.users.find(user => user.login.uuid == this.$route.params.id)
+    }, */
     currentUser() {
       return this.$store.getters.user;
     },

@@ -59,9 +59,8 @@ export default {
       ];
     },
     handleSelectUser(user) {
-      console.log("Selected User :" + JSON.stringify(user));
       this.$store.dispatch("SELECT_USER", user);
-      this.$router.push({ path: `/user/${this.user.login.username}` });
+      this.$router.push({ path: `/user/${this.user.login.uuid}` });
     }
   },
   computed: {
