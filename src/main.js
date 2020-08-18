@@ -11,6 +11,7 @@ import { Server } from "miragejs";
 
 new Server({
   routes() {
+    this.timing = 1000
     this.get('/api/users', () => {
       return [{
           gender: "female",
