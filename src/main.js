@@ -21,6 +21,13 @@ new Server({
             first: "Mona",
             last: "Oldervik"
           },
+          parentName: "",
+          jmbg: "1007979181947",
+          position: "Call Agent",
+          bank: "Sparkasse",
+          bankId: "154304999684120",
+          travelExpenses: true,
+          department: "Tuzla",
           location: {
             street: {
               number: 1458,
@@ -30,6 +37,7 @@ new Server({
             state: "Buskerud",
             country: "Norway",
             postcode: "6658",
+            municipality: "Kingston",
             coordinates: {
               latitude: "57.1643",
               longitude: "149.2949"
@@ -74,6 +82,12 @@ new Server({
             first: "Hugh",
             last: "Russell"
           },
+          parentName: "",
+          jmbg: "1007979181947",
+          position: "Call Agent",
+          bank: "Sparkasse",
+          bankId: "154304999684120",
+          travelExpenses: true,
           location: {
             street: {
               number: 1492,
@@ -83,6 +97,7 @@ new Server({
             state: "Worcestershire",
             country: "United Kingdom",
             postcode: "D9J 7NN",
+            municipality: "Boston Hights",
             coordinates: {
               latitude: "7.6025",
               longitude: "-14.4795"
@@ -128,6 +143,12 @@ new Server({
             first: "Cailane",
             last: "Araújo"
           },
+          parentName: "",
+          jmbg: "1007979181947",
+          position: "Call Agent",
+          bank: "Sparkasse",
+          bankId: "154304999684120",
+          travelExpenses: true,
           location: {
             street: {
               number: 1997,
@@ -137,6 +158,7 @@ new Server({
             state: "Amapá",
             country: "Brazil",
             postcode: 31969,
+            municipality: "Sao Paolo",
             coordinates: {
               latitude: "-3.1291",
               longitude: "141.7888"
@@ -182,6 +204,12 @@ new Server({
             first: "Erico",
             last: "Ferreira"
           },
+          parentName: "",
+          jmbg: "1007979181947",
+          position: "Call Agent",
+          bank: "Sparkasse",
+          bankId: "154304999684120",
+          travelExpenses: true,
           location: {
             street: {
               number: 921,
@@ -191,6 +219,7 @@ new Server({
             state: "Amazonas",
             country: "Brazil",
             postcode: 36932,
+            municipality: "San Pedro MS",
             coordinates: {
               latitude: "-8.2811",
               longitude: "156.1637"
@@ -228,21 +257,22 @@ new Server({
           },
           nat: "BR",
           isActive: false
-        },
+        }
       ]
-    })
+    });
   },
   routes() {
-    this.passthrough()
-    this.timing = 50
-    this.get('/api/users', (schema) => {
+    this.passthrough();
+    this.timing = 200;
+
+
+    this.get("/api/users", schema => {
       return schema.db.users;
-    })
+    });
 
-
-    this.post('/api/users', (schema, request) => {
+    this.post("/api/users", (schema, request) => {
       let user = JSON.parse(request.requestBody);
-      console.log(user)
+      console.log(user);
       return schema.db.users.insert([{
         name: {
           first: user.name.first,
@@ -252,19 +282,17 @@ new Server({
           large: "https://randomuser.me/api/portraits/women/40.jpg",
           medium: "https://randomuser.me/api/portraits/med/women/40.jpg",
           thumbnail: "https://randomuser.me/api/portraits/thumb/women/40.jpg"
-        },
+        }
       }]);
-    })
+    });
 
-    this.patch('/api/users/:id', (schema, request) => {
+    this.patch("/api/users/:id", (schema, request) => {
       let user = JSON.parse(request.requestBody);
-      console.log(user)
+      console.log(user);
       return schema.db.users.update(user.id, user);
-    })
-
-
+    });
   }
-})
+});
 
 Vue.config.productionTip = false;
 new Vue({

@@ -12,10 +12,56 @@
       <v-col>
         <v-card>
           <v-row>
-            <v-col cols="12" sm="2">
-              <v-card-text>
-                <v-img :src="user.picture.large" class="mb-3"></v-img>
-              </v-card-text>
+            <v-col cols="12" sm="2" class="pr-0 border-right">
+              <v-row>
+                <v-col>
+                  <v-card-text>
+                    <v-img :src="user.picture.large" class="mb-3"></v-img>
+                  </v-card-text>
+                </v-col>
+                <v-col>
+                  <v-row>
+                    <v-col cols="12" sm="12">
+                      <v-card-text class="user__profile--info--wrapper">
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Date of Birth:</h6>
+                          <span class="user__profile--info">{{ getUserDateOfBirth }}</span>
+                        </div>
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">E-Mail:</h6>
+                          <span class="user__profile--info">{{ user.email }}</span>
+                        </div>
+
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Telefon:</h6>
+                          <span class="user__profile--info">{{ user.phone }}</span>
+                        </div>
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Address:</h6>
+                          <span class="user__profile--info">{{ getAddress }}</span>
+                        </div>
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">ID:</h6>
+                          <span class="user__profile--info">{{ user.id }}</span>
+                        </div>
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Username:</h6>
+                          <span class="user__profile--info">{{ user.login.username }}</span>
+                        </div>
+
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Position:</h6>
+                          <span class="user__profile--info">{{ getRandomProffesion }}</span>
+                        </div>
+                        <div class="text__block mb-2">
+                          <h6 class="subtitle-2" color="deep-purple accent-4">Registered:</h6>
+                          <span class="user__profile--info">{{ getUserRegistrationDate }}</span>
+                        </div>
+                      </v-card-text>
+                    </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
             </v-col>
             <v-col cols="12" sm="7">
               <v-row class="mb-0 pb-0">
@@ -33,7 +79,7 @@
                         </v-col>
                       </v-row>
 
-                      <v-form @submit.prevent>
+                      <v-form @submit.prevent :disabled="loading">
                         <v-row>
                           <v-col cols="12" sm="6">
                             <v-text-field
@@ -88,79 +134,16 @@
                             ></v-text-field>
                           </v-col>
                           <v-col class="text-right">
-                            <v-btn color="success" dark @click="updateUser(user)">Update User</v-btn>
+                            <v-btn
+                              :loading="loading"
+                              :disabled="loading"
+                              color="success"
+                              @click="updateUser(user)"
+                            >Update User</v-btn>
                           </v-col>
                         </v-row>
                       </v-form>
                     </v-container>
-                  </v-card-text>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="12" sm="6">
-                  <v-card-text class="user__profile--info--wrapper">
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Date of Birth:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserDateOfBirth }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        E-Mail:
-                        <span class="user__profile--info float-right">{{ user.email }}</span>
-                      </h6>
-                    </div>
-
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Telefon:
-                        <span class="user__profile--info float-right">{{ user.phone }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Address:
-                        <span class="user__profile--info float-right">{{ getAddress }}</span>
-                      </h6>
-                    </div>
-                  </v-card-text>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-card-text class="user__profile--info--wrapper">
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        ID:
-                        <span class="user__profile--info float-right">{{ user.id.name }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Username:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ user.login.username }}</span>
-                      </h6>
-                    </div>
-
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Position:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getRandomProffesion }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Registered:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserRegistrationDate }}</span>
-                      </h6>
-                    </div>
                   </v-card-text>
                 </v-col>
               </v-row>
@@ -194,6 +177,8 @@ export default {
   },
   data: function() {
     return {
+      loader: null,
+      loading: false,
       firstname: null,
       proffesion: ["Call Agent", "Support", "Developer"],
       userId: this.$route.params.id
@@ -204,8 +189,22 @@ export default {
       this.$router.push({ path: `/mirage/user/${this.user.id}` });
     },
     updateUser(user) {
-      axios.patch(`/api/users/${user.id}`, this.user);
-      this.$store.dispatch("UPDATE_USER", this.user);
+      setTimeout(
+        () => (this.loader = "loading"),
+        axios.patch(`/api/users/${user.id}`, this.user),
+        this.$store.dispatch("UPDATE_USER", this.user),
+        200
+      );
+    }
+  },
+  watch: {
+    loader() {
+      const l = this.loader;
+      this[l] = !this[l];
+
+      setTimeout(() => (this[l] = false), 1000);
+
+      this.loader = null;
     }
   },
   computed: {
@@ -254,6 +253,7 @@ export default {
 .user__profile--info--wrapper {
   h6 {
     font-weight: 600 !important;
+    display: block;
   }
   .user__profile--info {
     font-size: 0.875rem;
@@ -262,5 +262,44 @@ export default {
   p {
     font-size: 0.875rem;
   }
+}
+.custom-loader {
+  animation: loader 1s infinite;
+  display: flex;
+}
+@-moz-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes loader {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.border-right {
+  border-right: 1px solid rgb(238, 238, 238);
 }
 </style>

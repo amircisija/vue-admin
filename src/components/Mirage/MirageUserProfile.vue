@@ -72,6 +72,14 @@
                         <span class="user__profile--info float-right">{{ getAddress }}</span>
                       </h6>
                     </div>
+                    <div class="text__block mb-2">
+                      <h6 class="subtitle-2" color="deep-purple accent-4">
+                        Municipality:
+                        <span
+                          class="user__profile--info float-right"
+                        >{{ user.location.municipality }}</span>
+                      </h6>
+                    </div>
                   </v-card-text>
                 </v-col>
                 <v-col cols="12" sm="6">
