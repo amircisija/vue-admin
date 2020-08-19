@@ -1,9 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Test from "../views/Test.vue";
+import Mirage from "../views/Mirage.vue";
 import Hrm from "../views/Hrm.vue";
 import UserProfile from '../components/User/UserProfile.vue';
+import MirageUserProfile from '../components/Mirage/MirageUserProfile.vue';
 Vue.use(VueRouter);
 
 const routes = [{
@@ -12,18 +13,30 @@ const routes = [{
     component: Home
   },
   {
-    path: "/test",
-    name: "Test",
-    component: Test
+    path: "/mirage",
+    name: "Mirage",
+    component: Mirage
+  }, {
+    path: "/mirage-add-user",
+    name: "AddMirageUser",
+    component: () => import("../components/Mirage/AddMirageUser.vue")
+  },
+  {
+    path: "/mirage/user/:id",
+    name: "MirageUserProfile",
+    component: MirageUserProfile,
+    props: true
+  },
+  {
+    path: "/mirage/user/edit/:id",
+    name: "EditMirageUser",
+    component: () => import("../components/Mirage/EditMirageUser.vue"),
+    props: true
   },
   {
     path: "/hrm",
     name: "Hrm",
     component: Hrm
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    /* component: () => import("../views/Hrm.vue") */
   },
   {
     path: "/user/:id",

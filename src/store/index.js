@@ -52,7 +52,7 @@ export default new Vuex.Store({
     getUsers(state) {
       return state.users
     },
-    getLocalUsers(state){
+    getLocalUsers(state) {
       return state.localUsers;
     },
     fullUserName(state) {
@@ -80,6 +80,7 @@ export default new Vuex.Store({
       commit
     }) {
       console.log("Api Call recieved");
+
       axios
         .get(apiLink)
         .then(response => {
@@ -87,7 +88,9 @@ export default new Vuex.Store({
           commit("saveUsers", response.data.results);
         })
     },
-    async UPDATE_USER({ commit }, currentUser) {
+    async UPDATE_USER({
+      commit
+    }, currentUser) {
       commit("updateUser", currentUser)
     },
 

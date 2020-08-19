@@ -8,23 +8,9 @@
     </transition>
     <v-container>
       <v-row>
-        <v-col sm="6">
-          <v-text-field
-            v-model="user.name.first"
-            @keyup.enter="addUser"
-          ></v-text-field>
-        </v-col>
-        <v-col sm="6">
-          <v-text-field
-            v-model="user.name.last"
-            @keyup.enter="addUser"
-          ></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
         <template v-for="user in users">
-          <v-col cols="12" sm="6" md="4" lg="3" :key="user.id.value">
-            <hrm-users :user="user"></hrm-users>
+          <v-col cols="12" sm="6" md="4" lg="3" :key="user.id">
+            <hrm-users-test :user="user"></hrm-users-test>
           </v-col>
         </template>
       </v-row>
@@ -34,39 +20,29 @@
 
 <script>
 import axios from "axios";
-import HrmUsers from "@/components/HrmUsers";
+import HrmUsersTest from "@/components/Mirage/HrmUsersTest";
 // @ is an alias to /src
 /* import HelloWorld from "@/components/HelloWorld.vue";
 import AppNavigation from "@/components/AppNavigation.vue"; */
 export default {
   name: "Test",
   components: {
-    HrmUsers,
+    HrmUsersTest
   },
   data: () => ({
     users: [],
     overlay: false,
     user: {
+      email: null,
+      phone: null,
       name: {
         first: null,
-        last: null,
-      },
+        last: null
+      }
     },
-    isLoading: false,
+    isLoading: false
   }),
-  methods: {
-    addUser() {
-      axios.post("/api/users", this.user).then((response) => {
-        this.users.push({
-          name: {
-            first: this.user.name.first,
-            last: this.user.name.last,
-          },
-        });
-        console.log(response.data);
-      });
-    },
-  },
+
   created() {
     /* Api()
       .get("/users")
@@ -74,11 +50,12 @@ export default {
       console.log(response.data);
     }) */
     this.isLoading = true;
-    axios.get("/api/users").then((response) => {
+    axios.get("/api/users").then(response => {
       this.users = response.data;
+      this.$store.commit("saveUsers", this.users);
       this.isLoading = false;
     });
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
