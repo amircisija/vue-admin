@@ -1,6 +1,13 @@
 <template>
   <v-card>
-    <v-card-text v-if="user.picture">
+    <v-card-text v-if="user.picture" class="mb-4">
+      <div
+        class="is__active--indicator"
+        v-bind:class="(user.isActive ? 'active__class' : 'not__active__class')"
+      >
+        <span></span>
+      </div>
+
       <p class="subtitle-1 font-weight-bold text--primary">{{ getFullName }}</p>
       <v-list-item-avatar tile size="80" color="grey" class="card__avatar">
         <v-img :src="user.picture.thumbnail"></v-img>
@@ -104,5 +111,23 @@ export default {
 }
 .v-application .subtitle-1 {
   margin-bottom: 0;
+}
+.is__active--indicator {
+  width: 10px;
+  height: 10px;
+
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 5px;
+  border-radius: 50%;
+  margin-left: 0;
+}
+.active__class {
+  background: #8bc34a;
+}
+.not__active__class {
+  background: #f44336;
 }
 </style>

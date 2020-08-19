@@ -64,7 +64,8 @@ new Server({
             medium: "https://randomuser.me/api/portraits/med/women/40.jpg",
             thumbnail: "https://randomuser.me/api/portraits/thumb/women/40.jpg"
           },
-          nat: "NO"
+          nat: "NO",
+          isActive: true
         },
         {
           gender: "male",
@@ -117,7 +118,8 @@ new Server({
             medium: "https://randomuser.me/api/portraits/med/men/98.jpg",
             thumbnail: "https://randomuser.me/api/portraits/thumb/men/98.jpg"
           },
-          nat: "GB"
+          nat: "GB",
+          isActive: true
         },
         {
           gender: "female",
@@ -170,7 +172,8 @@ new Server({
             medium: "https://randomuser.me/api/portraits/med/women/6.jpg",
             thumbnail: "https://randomuser.me/api/portraits/thumb/women/6.jpg"
           },
-          nat: "BR"
+          nat: "BR",
+          isActive: true
         },
         {
           gender: "male",
@@ -223,7 +226,8 @@ new Server({
             medium: "https://randomuser.me/api/portraits/med/men/35.jpg",
             thumbnail: "https://randomuser.me/api/portraits/thumb/men/35.jpg"
           },
-          nat: "BR"
+          nat: "BR",
+          isActive: false
         },
       ]
     })
@@ -234,6 +238,7 @@ new Server({
     this.get('/api/users', (schema) => {
       return schema.db.users;
     })
+
 
     this.post('/api/users', (schema, request) => {
       let user = JSON.parse(request.requestBody);
@@ -249,6 +254,12 @@ new Server({
           thumbnail: "https://randomuser.me/api/portraits/thumb/women/40.jpg"
         },
       }]);
+    })
+
+    this.patch('/api/users/:id', (schema, request) => {
+      let user = JSON.parse(request.requestBody);
+      console.log(user)
+      return schema.db.users.update(user.id, user);
     })
 
 

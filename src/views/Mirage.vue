@@ -1,12 +1,12 @@
 <template>
   <div class="test">
-    <h2>Test Page</h2>
+    <h2>Hrm User overview - With mockup server Mirage</h2>
     <transition name="fade">
       <v-overlay :value="isLoading">
         <v-progress-circular indeterminate size="64"></v-progress-circular>
       </v-overlay>
     </transition>
-    <v-container>
+    <v-container fluid>
       <v-row>
         <template v-for="user in users">
           <v-col cols="12" sm="6" md="4" lg="3" :key="user.id">
