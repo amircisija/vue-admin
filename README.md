@@ -2,6 +2,8 @@
 
 Vue.js admin dashboard practicing
 
+- Added Mirage JS for backend mockup
+
 ## Project setup
 
 ```
