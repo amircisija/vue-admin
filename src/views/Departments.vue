@@ -13,7 +13,7 @@
               <v-toolbar flat color="white">
                 <v-dialog v-model="dialog" max-width="500px">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="success" class="mb-2" v-bind="attrs" v-on="on">New Item</v-btn>
+                    <v-btn color="success" class="my-4" v-bind="attrs" v-on="on">Add new Department</v-btn>
                   </template>
                   <v-card>
                     <v-card-title>

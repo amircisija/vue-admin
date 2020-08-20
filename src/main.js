@@ -15,33 +15,35 @@ import {
 } from "miragejs";
 
 new Server({
-
   models: {
     user: Model.extend({
-      files: hasMany(),
+      files: hasMany()
     }),
 
     files: Model.extend({
-      user: belongsTo(),
-    }),
+      user: belongsTo()
+    })
   },
 
   seeds(server) {
     server.db.loadData({
-
       files: [{
-        name: 'file-1.pdf',
-        userId: 4
-      }, {
-        name: 'file-2.pdf',
-        userId: 4
-      }, {
-        name: 'file-3.pdf',
-        userId: 4
-      }, {
-        name: 'file-3.pdf',
-        userId: 1
-      }],
+          name: "file-1.pdf",
+          userId: 4
+        },
+        {
+          name: "file-2.pdf",
+          userId: 4
+        },
+        {
+          name: "file-3.pdf",
+          userId: 4
+        },
+        {
+          name: "file-4.pdf",
+          userId: 1
+        }
+      ],
       departments: [{
           text: "Sarajevo",
           address: "Test Address 99",
@@ -51,7 +53,7 @@ new Server({
           text: "Tuzla",
           address: "Test Address 19",
           municipality: "Old City"
-        },
+        }
       ],
       users: [{
           gender: "female",
@@ -60,6 +62,8 @@ new Server({
             first: "Mona",
             last: "Oldervik"
           },
+          startData: null,
+          endDate: null,
           parentName: "",
           jmbg: "1007979181947",
           position: "Call Agent",
@@ -100,7 +104,7 @@ new Server({
             age: 45
           },
           registered: {
-            date: "2013-07-26T17:38:53.692Z",
+            date: "2020-08-10T17:38:53.692Z",
             age: 7
           },
           phone: "76435985",
@@ -121,6 +125,8 @@ new Server({
             last: "Russell"
           },
           parentName: "",
+          startData: null,
+          endDate: null,
           jmbg: "1007979181947",
           position: "Call Agent",
           bank: "Sparkasse",
@@ -183,6 +189,8 @@ new Server({
             last: "Araújo"
           },
           parentName: "",
+          startData: null,
+          endDate: null,
           jmbg: "1007979181947",
           position: "Call Agent",
           bank: "Sparkasse",
@@ -244,6 +252,8 @@ new Server({
             first: "Erico",
             last: "Ferreira"
           },
+          startData: null,
+          endDate: null,
           parentName: "TESTTT",
           jmbg: "1007979181947",
           position: "Call Agent",
@@ -306,8 +316,8 @@ new Server({
     this.passthrough();
     this.timing = 200;
 
-    this.resource('users');
-    this.resource('files');
+    this.resource("users");
+    this.resource("files");
 
     // Users Get
     this.get("/api/users", schema => {
@@ -318,7 +328,7 @@ new Server({
       const {
         queryParams: {
           userId
-        },
+        }
       } = request;
 
       return schema.files.where({

@@ -50,10 +50,13 @@ export default {
       .then(response => {
       console.log(response.data);
     }) */
-    axios.get("/api/users").then(response => {
-      this.users = response.data;
-      this.$store.commit("saveUsers", this.users);
-    });
+    axios
+      .get("/api/users")
+      .then(response => {
+        this.users = response.data;
+        this.$store.commit("saveUsers", this.users);
+      })
+      .catch(error => console.log(error));
   }
 };
 </script>

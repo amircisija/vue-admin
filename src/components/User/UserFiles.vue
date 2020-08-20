@@ -1,20 +1,28 @@
 <template>
   <div>
-    <h5>{{ user.id }}</h5>
     <v-tabs v-model="tab" class="mb-5" color="deep-purple">
       <v-tab v-for="item in items2" :key="item.tab">{{ item.tab }}</v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in items2" :key="item.tab">
-        <v-alert type="warning" v-if="!files.length">I'm a warning alert.</v-alert>
-        <v-card flat v-else>
-          <v-card-text>
-            <p v-for="(item, i) in files" :key="i">
-              <a>{{ item.name }}</a>
-            </p>
-          </v-card-text>
-        </v-card>
+        <v-alert
+          border="left"
+          colored-border
+          color="deep-purple accent-4"
+          elevation="2"
+          v-if="!files.length"
+        >Seems like there are no files!</v-alert>
+        <div v-else>
+          <p v-for="(item, i) in files" :key="i" class="file__paragraph">
+            <span class="file__dot"></span>
+            <a
+              class="file__link"
+              :href="require(`@/assets/${item.name}`)"
+              target="_blank"
+            >{{ item.name }}</a>
+          </p>
+        </div>
       </v-tab-item>
     </v-tabs-items>
   </div>
@@ -60,7 +68,8 @@ export default {
       .then(response => {
         this.files = response.data.files;
         console.log("This User ID is: " + this.user.id);
-      });
+      })
+      .catch(error => console.log(error));
   }
 };
 </script>
@@ -108,5 +117,24 @@ export default {
   flex: 1 1;
   overflow: hidden;
   padding: 0;
+}
+.file__paragraph:hover .file__dot {
+  background: #4337cc;
+}
+.file__dot {
+  background: #7367f0;
+  width: 12px !important;
+  height: 12px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 15px;
+  top: 0px;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+.file__link {
+  color: #212121;
+  text-decoration: none;
+  font-weight: 400;
 }
 </style>

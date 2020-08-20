@@ -9,7 +9,7 @@
           @click="handleSelectUser(user)"
           :user="user"
         >
-          <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
+          <v-icon color="deep-purple accent-4" small class="mr-2">mdi-chevron-left</v-icon>Go Back
         </v-btn>
         <h2>Profile {{ user.name.first }} {{ user.name.last }}</h2>
       </v-col>
