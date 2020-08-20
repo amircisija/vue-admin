@@ -1,31 +1,34 @@
 <template>
   <div>
-    <v-list flat>
-      <v-subheader>Glavni fajlovi</v-subheader>
-      <v-list-item-group color="primary">
-        <v-list-item v-for="(item, i) in files" :key="i">
-          <v-list-item-icon>
-            <v-avatar class="user__profile--avatar">
-              <v-img width="60" :src="item.icon"></v-img>
-            </v-avatar>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>
-              <a
-                target="_blank"
-                class="nuxt__file--link"
-                :href="item.location"
-              >{{ getRandomProffesion() }}</a>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
+    <h5>{{ user.id }}</h5>
+    <v-tabs v-model="tab" class="mb-5" color="deep-purple">
+      <v-tab v-for="item in items2" :key="item.tab">{{ item.tab }}</v-tab>
+    </v-tabs>
+
+    <v-tabs-items v-model="tab">
+      <v-tab-item v-for="item in items2" :key="item.tab">
+        <v-card flat>
+          <v-card-text>
+            <p v-for="(item, i) in files" :key="i">
+              <a>{{ item.name }}</a>
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-tab-item>
+    </v-tabs-items>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data: () => ({
+    tab: null,
+    items2: [
+      { tab: "Main files", content: "Tab 1 Content" },
+      { tab: "Applications", content: "Tab 2 Content" },
+      { tab: "Withdrawals", content: "Tab 3 Content" },
+      { tab: "Other", content: "Tab 4 Content" }
+    ],
     fileNames: [
       "Lična karta",
       "Osiguranje",
@@ -34,43 +37,29 @@ export default {
       "Prijava",
       "Odjava"
     ],
-    files: [
-      {
-        icon: require("@/assets/icon_1.svg"),
-        location: require("@/assets/file-1.pdf"),
-        text: "File 1"
-      },
-      {
-        icon: require("@/assets/icon_1.svg"),
-        location: require("@/assets/file-3.pdf"),
-        text: "File 2"
-      },
-      {
-        icon: require("@/assets/icon_1.svg"),
-        location: require("@/assets/file-3.pdf"),
-        text: "File 3"
-      }
-    ],
-    items: [
-      {
-        icon: "mdi-wifi",
-        text: "Wifi"
-      },
-      {
-        icon: "mdi-bluetooth",
-        text: "Bluetooth"
-      },
-      {
-        icon: "mdi-chart-donut",
-        text: "Data Usage"
-      }
-    ],
+    files: [],
     model: 1
   }),
+  computed: {
+    users() {
+      return this.$store.state.users;
+    },
+    user() {
+      return this.users.find(v => v.id == this.$route.params.id) || {};
+    }
+  },
   methods: {
     getRandomProffesion() {
       return this.fileNames[Math.floor(Math.random() * this.fileNames.length)];
     }
+  },
+  created() {
+    axios
+      .get(`/api/files?userId=${this.user.id}`, { data: this.user })
+      .then(response => {
+        this.files = response.data.files;
+        console.log("This User ID is: " + this.user.id);
+      });
   }
 };
 </script>

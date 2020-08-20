@@ -8,14 +8,37 @@ import "./assets/scss/style.scss";
 import "@fortawesome/fontawesome-free/css/all.css";
 
 import {
-  Server
+  Server,
+  Model,
+  belongsTo,
+  hasMany
 } from "miragejs";
 
 new Server({
+
+  models: {
+    user: Model.extend({
+      files: hasMany(),
+    }),
+
+    files: Model.extend({
+      user: belongsTo(),
+    }),
+  },
+
   seeds(server) {
     server.db.loadData({
 
-
+      files: [{
+        name: 'file-1.pdf',
+        userId: 4
+      }, {
+        name: 'file-2.pdf',
+        userId: 4
+      }, {
+        name: 'file-3.pdf',
+        userId: 4
+      }],
       departments: [{
           text: "Sarajevo",
           address: "Test Address 99",
@@ -280,9 +303,24 @@ new Server({
     this.passthrough();
     this.timing = 200;
 
+    this.resource('users');
+    this.resource('files');
+
     // Users Get
     this.get("/api/users", schema => {
       return schema.db.users;
+    });
+
+    this.get("/api/files", (schema, request) => {
+      const {
+        queryParams: {
+          userId
+        },
+      } = request;
+
+      return schema.files.where({
+        userId
+      });
     });
 
     // Create new user

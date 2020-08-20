@@ -16,132 +16,134 @@
     </v-row>
     <v-row>
       <v-col>
-        <v-card>
-          <v-row>
-            <v-col cols="12" sm="2" class="text-center">
-              <v-card-text>
-                <v-img :src="user.picture.large" class="mb-3"></v-img>
-                <v-btn
-                  color="deep-purple accent-4"
-                  class="white--text"
-                  @click="editCurrentUser(user)"
-                >
-                  <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
-                </v-btn>
-              </v-card-text>
-            </v-col>
-            <v-col cols="12" sm="7">
-              <v-row>
-                <v-col>
-                  <h4 class="mb-2 overline">Profile Completion</h4>
-                  <transition name="slide-up" mode="in-out">
-                    <v-progress-linear color="deep-purple" rounded :value="progressValue"></v-progress-linear>
-                  </transition>
-                </v-col>
-              </v-row>
-              <v-row class="mb-0 pb-0">
-                <v-col class="mb-0 pb-0">
-                  <v-card-text class="mb-0 pb-0">
-                    <h4 class="text-h5 text-deep-purple">
-                      <v-icon color="purple darken-2">mdi-account</v-icon>
-                      {{ currentUserFullName }}
-                    </h4>
-                    <v-divider class="mt-2"></v-divider>
-                  </v-card-text>
-                </v-col>
-              </v-row>
-              <v-row class="py-4 my-0 px-2">
-                <v-col class="py-0 my-0 mb-0 px-5">
-                  <h3 class="mb-0 overline">General Information</h3>
-                </v-col>
-              </v-row>
-              <v-row class="pt-0">
-                <v-col cols="12" sm="6" class="pt-0">
-                  <v-card-text class="user__profile--info--wrapper pt-0">
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Date of Birth:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserDateOfBirth }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        E-Mail:
-                        <span class="user__profile--info float-right">{{ user.email }}</span>
-                      </h6>
-                    </div>
+        <v-card flat>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="2" class="text-center border-right pr-0 pt-0">
+                <v-card-text>
+                  <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
+                  <v-btn
+                    color="deep-purple accent-4"
+                    class="white--text"
+                    @click="editCurrentUser(user)"
+                  >
+                    <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
+                  </v-btn>
+                </v-card-text>
+              </v-col>
+              <v-col cols="12" sm="10">
+                <v-row>
+                  <v-col>
+                    <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                    <transition name="slide-up" mode="in-out">
+                      <v-progress-linear color="deep-purple" rounded :value="progressValue"></v-progress-linear>
+                    </transition>
+                  </v-col>
+                </v-row>
+                <v-row class="mb-0 pb-0">
+                  <v-col class="mb-0 pb-0">
+                    <v-card-text class="mb-0 pb-0">
+                      <h4 class="text-h5 text-deep-purple">
+                        <v-icon color="purple darken-2">mdi-account</v-icon>
+                        {{ currentUserFullName }}
+                      </h4>
+                      <v-divider class="mt-2"></v-divider>
+                    </v-card-text>
+                  </v-col>
+                </v-row>
+                <v-row class="py-4 my-0 px-2">
+                  <v-col class="py-0 my-0 mb-0 px-5">
+                    <h3 class="mb-0 overline">General Information</h3>
+                  </v-col>
+                </v-row>
+                <v-row class="pt-0">
+                  <v-col cols="12" sm="6" class="pt-0">
+                    <v-card-text class="user__profile--info--wrapper pt-0">
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Date of Birth:
+                          <span
+                            class="user__profile--info float-right"
+                          >{{ getUserDateOfBirth }}</span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          E-Mail:
+                          <span class="user__profile--info float-right">{{ user.email }}</span>
+                        </h6>
+                      </div>
 
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Telefon:
-                        <span class="user__profile--info float-right">{{ user.phone }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Address:
-                        <span class="user__profile--info float-right">{{ getAddress }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Municipality:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ user.location.municipality }}</span>
-                      </h6>
-                    </div>
-                  </v-card-text>
-                </v-col>
-                <v-col cols="12" sm="6">
-                  <v-card-text class="user__profile--info--wrapper">
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        ID:
-                        <span class="user__profile--info float-right">{{ user.login.uuid }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Username:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ user.login.username }}</span>
-                      </h6>
-                    </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Telefon:
+                          <span class="user__profile--info float-right">{{ user.phone }}</span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Address:
+                          <span class="user__profile--info float-right">{{ getAddress }}</span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Municipality:
+                          <span
+                            class="user__profile--info float-right"
+                          >{{ user.location.municipality }}</span>
+                        </h6>
+                      </div>
+                    </v-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-card-text class="user__profile--info--wrapper">
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          ID:
+                          <span class="user__profile--info float-right">{{ user.login.uuid }}</span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Username:
+                          <span
+                            class="user__profile--info float-right"
+                          >{{ user.login.username }}</span>
+                        </h6>
+                      </div>
 
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Position:
-                        <span class="user__profile--info float-right">{{ user.position }}</span>
-                      </h6>
-                    </div>
-                    <div class="text__block mb-2">
-                      <h6 class="subtitle-2" color="deep-purple accent-4">
-                        Registered:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserRegistrationDate }}</span>
-                      </h6>
-                    </div>
-                  </v-card-text>
-                </v-col>
-              </v-row>
-            </v-col>
-            <v-col cols="12" sm="3">
-              <v-row>
-                <v-col>
-                  <v-card-text>
-                    <h4 class="text-h5 text-deep-purple">User Files</h4>
-                    <v-divider class="mt-2"></v-divider>
-                    <user-files></user-files>
-                  </v-card-text>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Position:
+                          <span class="user__profile--info float-right">{{ user.position }}</span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Registered:
+                          <span
+                            class="user__profile--info float-right"
+                          >{{ getUserRegistrationDate }}</span>
+                        </h6>
+                      </div>
+                    </v-card-text>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12">
+        <v-card flat>
+          <v-card-text>
+            <h4 class="text-h5 text-deep-purple">User Files</h4>
+            <v-divider class="mt-2"></v-divider>
+            <user-files :user="user"></user-files>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -242,5 +244,15 @@ export default {
 .slide-fade-leave-to {
   transform: translateY(100vh);
   opacity: 0;
+}
+.v-progress-linear {
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  transition: 0.4s cubic-bezier(0.6, 0, 0.6, 1);
+  width: 100%;
+}
+.border-right {
+  border-right: 1px solid rgb(238, 238, 238);
 }
 </style>

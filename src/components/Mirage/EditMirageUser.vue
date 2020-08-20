@@ -12,11 +12,11 @@
       <v-col>
         <v-card>
           <v-row>
-            <v-col cols="12" sm="2" class="pr-0 border-right">
+            <v-col cols="12" sm="2" class="pr-0 border-right pt-0">
               <v-row>
-                <v-col>
-                  <v-card-text class="pt-0">
-                    <v-img :src="user.picture.large" class="mb-3"></v-img>
+                <v-col class="pt-0">
+                  <v-card-text>
+                    <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
                     <v-row>
                       <v-col cols="12" sm="12">
                         <v-card-text class="user__profile--info--wrapper">
