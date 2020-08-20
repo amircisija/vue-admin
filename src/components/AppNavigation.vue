@@ -23,7 +23,7 @@
                 <v-list-item-title>{{ item.text }}</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="(child, i) in item.children" :key="i" link>
+            <v-list-item class="navigation__link--child" v-for="(child, i) in item.children" :key="i" link>
               <v-list-item-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
@@ -195,5 +195,8 @@ export default {
 .navigation__link {
   text-decoration: none;
   color: #7d7d7d !important;
+}
+.navigation__link--child {
+  padding-left: 30px!important;
 }
 </style>

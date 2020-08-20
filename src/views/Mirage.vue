@@ -2,7 +2,8 @@
   <v-container>
     <v-row>
       <v-col>
-        <h2>Hrm User overview - With mockup server Mirage</h2>
+        <h2>Human Resource</h2>
+        <h3 class="mb-0 overline">Users overview</h3>
       </v-col>
     </v-row>
     <v-row>
