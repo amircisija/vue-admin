@@ -1,6 +1,7 @@
 module.exports = {
   lintOnSave: false,
   transpileDependencies: ["vuetify", "vuex-persist"],
+
   chainWebpack: config => {
     const svgRule = config.module.rule("svg");
     svgRule.uses.clear();
@@ -11,5 +12,9 @@ module.exports = {
       .test(/\.pdf$/)
       .use("file-loader")
       .loader("file-loader");
+  },
+
+  pwa: {
+    themeColor: '#BD10E0'
   }
 };

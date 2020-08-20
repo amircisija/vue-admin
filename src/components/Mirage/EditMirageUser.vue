@@ -15,52 +15,51 @@
             <v-col cols="12" sm="2" class="pr-0 border-right">
               <v-row>
                 <v-col>
-                  <v-card-text>
+                  <v-card-text class="pt-0">
                     <v-img :src="user.picture.large" class="mb-3"></v-img>
+                    <v-row>
+                      <v-col cols="12" sm="12">
+                        <v-card-text class="user__profile--info--wrapper">
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Date of Birth:</h6>
+                            <span class="user__profile--info">{{ getUserDateOfBirth }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">E-Mail:</h6>
+                            <span class="user__profile--info">{{ user.email }}</span>
+                          </div>
+
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Telefon:</h6>
+                            <span class="user__profile--info">{{ user.phone }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Address:</h6>
+                            <span class="user__profile--info">{{ getAddress }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">ID:</h6>
+                            <span class="user__profile--info">{{ user.id }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Username:</h6>
+                            <span class="user__profile--info">{{ user.login.username }}</span>
+                          </div>
+
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Position:</h6>
+                            <span class="user__profile--info">{{ getRandomProffesion }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">Registered:</h6>
+                            <span class="user__profile--info">{{ getUserRegistrationDate }}</span>
+                          </div>
+                        </v-card-text>
+                      </v-col>
+                    </v-row>
                   </v-card-text>
                 </v-col>
-                <v-col>
-                  <v-row>
-                    <v-col cols="12" sm="12">
-                      <v-card-text class="user__profile--info--wrapper">
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Date of Birth:</h6>
-                          <span class="user__profile--info">{{ getUserDateOfBirth }}</span>
-                        </div>
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">E-Mail:</h6>
-                          <span class="user__profile--info">{{ user.email }}</span>
-                        </div>
-
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Telefon:</h6>
-                          <span class="user__profile--info">{{ user.phone }}</span>
-                        </div>
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Address:</h6>
-                          <span class="user__profile--info">{{ getAddress }}</span>
-                        </div>
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">ID:</h6>
-                          <span class="user__profile--info">{{ user.id }}</span>
-                        </div>
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Username:</h6>
-                          <span class="user__profile--info">{{ user.login.username }}</span>
-                        </div>
-
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Position:</h6>
-                          <span class="user__profile--info">{{ getRandomProffesion }}</span>
-                        </div>
-                        <div class="text__block mb-2">
-                          <h6 class="subtitle-2" color="deep-purple accent-4">Registered:</h6>
-                          <span class="user__profile--info">{{ getUserRegistrationDate }}</span>
-                        </div>
-                      </v-card-text>
-                    </v-col>
-                  </v-row>
-                </v-col>
+                <v-col></v-col>
               </v-row>
             </v-col>
             <v-col cols="12" sm="7">
@@ -73,14 +72,34 @@
                     </h4>
                     <v-divider class="mt-2"></v-divider>
                     <v-container>
-                      <v-row>
-                        <v-col>
-                          <h3>General Information</h3>
-                        </v-col>
-                      </v-row>
-
                       <v-form @submit.prevent :disabled="loading">
                         <v-row>
+                          <v-col cols="12" sm="10">
+                            <v-switch
+                              color="success"
+                              v-model="user.isActive"
+                              :label="`Still works?`"
+                            ></v-switch>
+                          </v-col>
+                          <v-col class="my-auto">
+                            <v-btn
+                              :loading="loading"
+                              :disabled="loading"
+                              color="success"
+                              @click="updateUser(user)"
+                            >Update User</v-btn>
+                          </v-col>
+                        </v-row>
+                        <v-row class="mb-5">
+                          <v-col cols="12">
+                            <h3 class="mb-0 overline">General Information</h3>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-select :items="genderItems" v-model="user.gender" label="Gender"></v-select>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-select :items="proffesion" v-model="user.position" label="Position"></v-select>
+                          </v-col>
                           <v-col cols="12" sm="6">
                             <v-text-field
                               :counter="20"
@@ -98,7 +117,31 @@
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-text-field :counter="30" v-model="user.email" label="Email" required></v-text-field>
+                            <v-text-field
+                              :counter="20"
+                              v-model="user.parentName"
+                              label="Parent name"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-text-field :counter="20" v-model="user.jmbg" label="JMBG" required></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-text-field :counter="20" v-model="user.bank" label="Bank" required></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="6">
+                            <v-text-field
+                              :counter="20"
+                              v-model="user.bankId"
+                              label="Bank ID"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col cols="12">
+                            <h3 class="mb-0 overline">Contact Information</h3>
                           </v-col>
                           <v-col cols="12" sm="6">
                             <v-text-field
@@ -108,7 +151,9 @@
                               required
                             ></v-text-field>
                           </v-col>
-
+                          <v-col cols="12" sm="6">
+                            <v-text-field :counter="30" v-model="user.email" label="Email" required></v-text-field>
+                          </v-col>
                           <v-col cols="12" sm="4">
                             <v-text-field
                               :counter="50"
@@ -132,6 +177,43 @@
                               label="Town"
                               required
                             ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="50"
+                              v-model="user.location.postcode"
+                              label="Postcode"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="50"
+                              v-model="user.location.municipality"
+                              label="Municipality"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-text-field
+                              :counter="50"
+                              v-model="user.location.country"
+                              label="Country"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12" sm="8">
+                            <v-select
+                              :items="departments"
+                              v-model="user.department"
+                              label="Department"
+                            ></v-select>
+                          </v-col>
+                          <v-col cols="12" sm="4">
+                            <v-switch
+                              v-model="user.travelExpenses"
+                              :label="`Travel Expenses: ${user.travelExpenses.toString()}`"
+                            ></v-switch>
                           </v-col>
                           <v-col class="text-right">
                             <v-btn
@@ -177,6 +259,8 @@ export default {
   },
   data: function() {
     return {
+      genderItems: ["male", "female", "Not specified"],
+      departments: ["Sarajevo", "Tuzla"],
       loader: null,
       loading: false,
       firstname: null,

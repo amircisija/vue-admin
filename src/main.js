@@ -14,6 +14,19 @@ import {
 new Server({
   seeds(server) {
     server.db.loadData({
+
+
+      departments: [{
+          text: "Sarajevo",
+          address: "Test Address 99",
+          municipality: "New City"
+        },
+        {
+          text: "Tuzla",
+          address: "Test Address 19",
+          municipality: "Old City"
+        },
+      ],
       users: [{
           gender: "female",
           name: {
@@ -34,7 +47,6 @@ new Server({
               name: "Bolette Brygge"
             },
             city: "Volda",
-            state: "Buskerud",
             country: "Norway",
             postcode: "6658",
             municipality: "Kingston",
@@ -88,13 +100,14 @@ new Server({
           bank: "Sparkasse",
           bankId: "154304999684120",
           travelExpenses: true,
+          department: "Sarajevo",
           location: {
             street: {
               number: 1492,
               name: "Victoria Street"
             },
             city: "Derby",
-            state: "Worcestershire",
+
             country: "United Kingdom",
             postcode: "D9J 7NN",
             municipality: "Boston Hights",
@@ -149,13 +162,14 @@ new Server({
           bank: "Sparkasse",
           bankId: "154304999684120",
           travelExpenses: true,
+          department: "Sarajevo",
           location: {
             street: {
               number: 1997,
               name: "Avenida da Legalidade"
             },
             city: "Santos",
-            state: "Amapá",
+
             country: "Brazil",
             postcode: 31969,
             municipality: "Sao Paolo",
@@ -204,19 +218,20 @@ new Server({
             first: "Erico",
             last: "Ferreira"
           },
-          parentName: "",
+          parentName: "TESTTT",
           jmbg: "1007979181947",
           position: "Call Agent",
           bank: "Sparkasse",
           bankId: "154304999684120",
           travelExpenses: true,
+          department: "Sarajevo",
           location: {
             street: {
               number: 921,
               name: "Rua José Bonifácio "
             },
             city: "Jaboatão dos Guararapes",
-            state: "Amazonas",
+
             country: "Brazil",
             postcode: 36932,
             municipality: "San Pedro MS",
@@ -248,7 +263,7 @@ new Server({
             age: 2
           },
           phone: "(23) 5397-3444",
-          cell: "(64) 2009-5259",
+          cell: null,
 
           picture: {
             large: "https://randomuser.me/api/portraits/men/35.jpg",
@@ -265,11 +280,12 @@ new Server({
     this.passthrough();
     this.timing = 200;
 
-
+    // Users Get
     this.get("/api/users", schema => {
       return schema.db.users;
     });
 
+    // Create new user
     this.post("/api/users", (schema, request) => {
       let user = JSON.parse(request.requestBody);
       console.log(user);
@@ -290,6 +306,11 @@ new Server({
       let user = JSON.parse(request.requestBody);
       console.log(user);
       return schema.db.users.update(user.id, user);
+    });
+
+    // Users Get
+    this.get("/api/departments", schema => {
+      return schema.db.departments;
     });
   }
 });

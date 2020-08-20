@@ -16,7 +16,13 @@ const routes = [{
     path: "/mirage",
     name: "Mirage",
     component: Mirage
-  }, {
+  },
+  {
+    path: "/departments",
+    name: "Departments",
+    component: () => import("../views/Departments")
+  },
+  {
     path: "/mirage-add-user",
     name: "AddMirageUser",
     component: () => import("../components/Mirage/AddMirageUser.vue")

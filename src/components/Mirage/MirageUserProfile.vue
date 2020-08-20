@@ -18,7 +18,7 @@
       <v-col>
         <v-card>
           <v-row>
-            <v-col cols="12" sm="2">
+            <v-col cols="12" sm="2" class="text-center">
               <v-card-text>
                 <v-img :src="user.picture.large" class="mb-3"></v-img>
                 <v-btn
@@ -31,6 +31,14 @@
               </v-card-text>
             </v-col>
             <v-col cols="12" sm="7">
+              <v-row>
+                <v-col>
+                  <h4 class="mb-2 overline">Profile Completion</h4>
+                  <transition name="slide-up" mode="in-out">
+                    <v-progress-linear color="deep-purple" rounded :value="progressValue"></v-progress-linear>
+                  </transition>
+                </v-col>
+              </v-row>
               <v-row class="mb-0 pb-0">
                 <v-col class="mb-0 pb-0">
                   <v-card-text class="mb-0 pb-0">
@@ -42,9 +50,14 @@
                   </v-card-text>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="12" sm="6">
-                  <v-card-text class="user__profile--info--wrapper">
+              <v-row class="py-4 my-0 px-2">
+                <v-col class="py-0 my-0 mb-0 px-5">
+                  <h3 class="mb-0 overline">General Information</h3>
+                </v-col>
+              </v-row>
+              <v-row class="pt-0">
+                <v-col cols="12" sm="6" class="pt-0">
+                  <v-card-text class="user__profile--info--wrapper pt-0">
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Date of Birth:
@@ -102,9 +115,7 @@
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Position:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getRandomProffesion }}</span>
+                        <span class="user__profile--info float-right">{{ user.position }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
@@ -147,7 +158,8 @@ export default {
   data: function() {
     return {
       proffesion: ["Call Agent", "Support", "Developer"],
-      userId: this.$route.params.id
+      userId: this.$route.params.id,
+      progressValue: 0
     };
   },
   methods: {
@@ -161,6 +173,9 @@ export default {
         path: `/mirage/user/edit/${this.user.id}`
       });
     }
+  },
+  created() {
+    setTimeout(() => (this.progressValue = 50), 400);
   },
   computed: {
     users() {
@@ -216,5 +231,16 @@ export default {
   p {
     font-size: 0.875rem;
   }
+}
+.slide-up-enter-active {
+  transition: all 0.2s ease;
+}
+.slide-up-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-up-enter,
+.slide-fade-leave-to {
+  transform: translateY(100vh);
+  opacity: 0;
 }
 </style>

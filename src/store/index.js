@@ -18,7 +18,8 @@ export default new Vuex.Store({
   state: {
     users: null,
     localUsers: null,
-    selectedUser: null
+    selectedUser: null,
+    departments: null,
   },
   mutations: {
     selectUser(state, user) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
       state.users = users;
       let cloneSheepsES6 = [...users];
       state.localUsers = cloneSheepsES6;
+    },
+    saveDepartments(state, departments) {
+      state.departments = departments;
     },
     deleteUser(state) {
       state.selectedUser = null;

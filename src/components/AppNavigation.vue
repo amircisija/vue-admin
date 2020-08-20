@@ -152,6 +152,11 @@ export default {
             link: "/mirage-add-user"
           }
         ]
+      },
+      {
+        icon: "mdi-home-city-outline",
+        text: "Departments",
+        link: "/departments"
       }
     ],
     items2: [

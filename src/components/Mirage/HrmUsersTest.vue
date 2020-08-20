@@ -12,7 +12,12 @@
       <v-list-item-avatar tile size="80" color="grey" class="card__avatar">
         <v-img :src="user.picture.thumbnail"></v-img>
       </v-list-item-avatar>
-      <div>{{ getRandomProffesion() }}</div>
+      <div>{{ user.position }}</div>
+
+      <h3>
+        <span v-if="user.parentName">{{user.parentName}}</span>
+        <span v-else>Empty</span>
+      </h3>
     </v-card-text>
     <v-list dense v-if="user.picture">
       <v-list-item-group color="primary">

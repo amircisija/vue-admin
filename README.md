@@ -3,6 +3,7 @@
 Vue.js admin dashboard practicing
 
 - Added Mirage JS for backend mockup
+- Demo in progress https://ac-vue-admin-v1.netlify.app/
 
 ## Project setup
 
