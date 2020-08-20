@@ -38,6 +38,9 @@ new Server({
       }, {
         name: 'file-3.pdf',
         userId: 4
+      }, {
+        name: 'file-3.pdf',
+        userId: 1
       }],
       departments: [{
           text: "Sarajevo",

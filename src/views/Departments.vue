@@ -11,10 +11,9 @@
           <v-data-table :headers="headers" :items="departments" sort-by="text" class="elevation-1">
             <template v-slot:top>
               <v-toolbar flat color="white">
-
                 <v-dialog v-model="dialog" max-width="500px">
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New Item</v-btn>
+                    <v-btn color="success" class="mb-2" v-bind="attrs" v-on="on">New Item</v-btn>
                   </template>
                   <v-card>
                     <v-card-title>
@@ -78,7 +77,7 @@ export default {
       },
       { text: "Address", value: "address" },
       { text: "Municipality", value: "municipality" },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: "Actions", value: "actions", sortable: false }
     ],
 
     editedIndex: -1,
@@ -95,7 +94,9 @@ export default {
   }),
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "New Department" : "Edit Department Details";
+      return this.editedIndex === -1
+        ? "New Department"
+        : "Edit Department Details";
     }
   },
 

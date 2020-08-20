@@ -7,7 +7,8 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in items2" :key="item.tab">
-        <v-card flat>
+        <v-alert type="warning" v-if="!files.length">I'm a warning alert.</v-alert>
+        <v-card flat v-else>
           <v-card-text>
             <p v-for="(item, i) in files" :key="i">
               <a>{{ item.name }}</a>
