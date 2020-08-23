@@ -9,9 +9,7 @@
           @click="handleSelectUser(user)"
           :user="user"
         >
-          <v-icon color="deep-purple accent-4" small class="mr-2"
-            >mdi-chevron-left</v-icon
-          >Go Back
+          <v-icon color="deep-purple accent-4" small class="mr-2">mdi-chevron-left</v-icon>Go Back
         </v-btn>
         <h2>Profile {{ user.name.first }} {{ user.name.last }}</h2>
       </v-col>
@@ -21,11 +19,7 @@
         <v-card flat>
           <v-container>
             <v-row>
-              <v-col
-                cols="12"
-                sm="2"
-                class="text-center border-right pr-0 pt-0"
-              >
+              <v-col cols="12" sm="2" class="text-center border-right pr-0 pt-0">
                 <v-card-text>
                   <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
                   <v-btn
@@ -33,24 +27,27 @@
                     class="white--text"
                     @click="editCurrentUser(user)"
                   >
-                    <v-icon color="white" small class="mr-2"
-                      >mdi-account-edit</v-icon
-                    >Edit
+                    <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
                   </v-btn>
                 </v-card-text>
               </v-col>
               <v-col cols="12" sm="10">
                 <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-alert
+                      v-if="getDifferenceFromDates < 31"
+                      border="bottom"
+                      colored-border
+                      type="warning"
+                      elevation="2"
+                    >Users Contract ends in {{ getDifferenceFromDates }} days</v-alert>
+                  </v-col>
+                </v-row>
+                <v-row>
                   <v-col>
-                    <h4 class="mb-2 overline">
-                      Profile Completion {{ progressValue }}%
-                    </h4>
+                    <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
                     <transition name="slide-up" mode="in-out">
-                      <v-progress-linear
-                        color="deep-purple"
-                        rounded
-                        :value="progressValue"
-                      ></v-progress-linear>
+                      <v-progress-linear color="deep-purple" rounded :value="progressValue"></v-progress-linear>
                     </transition>
                   </v-col>
                 </v-row>
@@ -76,42 +73,52 @@
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Date of Birth:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             getUserDateOfBirth
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           E-Mail:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.email
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
 
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Telefon:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.phone
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Address:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             getAddress
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Municipality:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.location.municipality
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                     </v-card-text>
@@ -121,34 +128,42 @@
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           ID:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.login.uuid
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Username:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.login.username
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
 
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Position:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             user.position
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
                           Registered:
-                          <span class="user__profile--info float-right">{{
+                          <span class="user__profile--info float-right">
+                            {{
                             getUserRegistrationDate
-                          }}</span>
+                            }}
+                          </span>
                         </h6>
                       </div>
                     </v-card-text>
@@ -209,6 +224,19 @@ export default {
     },
     user() {
       return this.users.find(v => v.id == this.$route.params.id) || {};
+    },
+    getDifferenceFromDates() {
+      const dateB = moment(this.user.startDate);
+      const dateC = moment(this.user.endDate);
+      let difference = dateB.diff(dateC, "days");
+
+      difference = Math.abs(difference);
+
+      if (difference < 30) {
+        return difference;
+      }
+
+      return difference;
     },
     currentUserFullName() {
       return this.$store.getters.fullUserName;

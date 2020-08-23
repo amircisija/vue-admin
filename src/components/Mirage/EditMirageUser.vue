@@ -64,6 +64,17 @@
               </v-row>
             </v-col>
             <v-col cols="12" sm="7">
+              <v-row>
+                <v-col cols="12" sm="6">
+                  <v-alert
+                    v-if="getDifferenceFromDates < 31"
+                    border="bottom"
+                    colored-border
+                    type="warning"
+                    elevation="2"
+                  >Users Contract ends in {{ getDifferenceFromDates }} days</v-alert>
+                </v-col>
+              </v-row>
               <v-row class="mb-0 pb-0">
                 <v-col class="mb-0 pb-0">
                   <v-card-text class="mb-0 pb-0">
@@ -359,8 +370,15 @@ export default {
     getDifferenceFromDates() {
       const dateB = moment(this.user.startDate);
       const dateC = moment(this.user.endDate);
-      const difference = dateB.diff(dateC, "days");
-      return Math.abs(difference);
+      let difference = dateB.diff(dateC, "days");
+
+      difference = Math.abs(difference);
+
+      if (difference < 30) {
+        return difference;
+      }
+
+      return difference;
     },
     users() {
       return this.$store.state.users;
