@@ -3,23 +3,37 @@
     <v-row>
       <v-col>
         <v-btn text color="deep-purple accent-4" class="mb-4" @click="goBack()">
-          <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
+          <v-icon color="purple darken-2" small class="mr-2"
+            >mdi-chevron-left</v-icon
+          >Go Back
         </v-btn>
         <h2>Add new user</h2>
       </v-col>
     </v-row>
     <v-row>
       <v-col sm="6">
-        <v-text-field v-model="user.name.first" @keyup.enter="addUser"></v-text-field>
+        <v-text-field
+          v-model="user.name.first"
+          @keyup.enter="addUser"
+        ></v-text-field>
       </v-col>
       <v-col sm="6">
-        <v-text-field v-model="user.name.last" @keyup.enter="addUser"></v-text-field>
+        <v-text-field
+          v-model="user.name.last"
+          @keyup.enter="addUser"
+        ></v-text-field>
       </v-col>
       <v-col sm="6">
-        <v-text-field v-model="user.email" @keyup.enter="addUser"></v-text-field>
+        <v-text-field
+          v-model="user.email"
+          @keyup.enter="addUser"
+        ></v-text-field>
       </v-col>
       <v-col sm="6">
-        <v-text-field v-model="user.phone" @keyup.enter="addUser"></v-text-field>
+        <v-text-field
+          v-model="user.phone"
+          @keyup.enter="addUser"
+        ></v-text-field>
       </v-col>
     </v-row>
   </v-container>

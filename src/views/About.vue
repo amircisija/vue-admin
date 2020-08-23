@@ -15,6 +15,6 @@
 import AppNavigation from "@/components/AppNavigation.vue"; */
 export default {
   name: "About",
-  components: {},
+  components: {}
 };
 </script>

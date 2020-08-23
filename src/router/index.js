@@ -3,11 +3,12 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Mirage from "../views/Mirage.vue";
 import Hrm from "../views/Hrm.vue";
-import UserProfile from '../components/User/UserProfile.vue';
-import MirageUserProfile from '../components/Mirage/MirageUserProfile.vue';
+import UserProfile from "../components/User/UserProfile.vue";
+import MirageUserProfile from "../components/Mirage/MirageUserProfile.vue";
 Vue.use(VueRouter);
 
-const routes = [{
+const routes = [
+  {
     path: "/",
     name: "Home",
     component: Home

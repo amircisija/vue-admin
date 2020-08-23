@@ -8,9 +8,13 @@
           class="mb-4"
           @click="handleSelectUser(currentUser)"
         >
-          <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
+          <v-icon color="purple darken-2" small class="mr-2"
+            >mdi-chevron-left</v-icon
+          >Go Back
         </v-btn>
-        <h2>Profile {{ currentUser.name.first }} {{ currentUser.name.last }}</h2>
+        <h2>
+          Profile {{ currentUser.name.first }} {{ currentUser.name.last }}
+        </h2>
       </v-col>
     </v-row>
     <v-row>
@@ -25,7 +29,9 @@
                   class="white--text"
                   @click="editCurrentUser(currentUser)"
                 >
-                  <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
+                  <v-icon color="white" small class="mr-2"
+                    >mdi-account-edit</v-icon
+                  >Edit
                 </v-btn>
               </v-card-text>
             </v-col>
@@ -47,30 +53,34 @@
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Date of Birth:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserDateOfBirth }}</span>
+                        <span class="user__profile--info float-right">{{
+                          getUserDateOfBirth
+                        }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         E-Mail:
-                        <span class="user__profile--info float-right">{{ currentUser.email }}</span>
+                        <span class="user__profile--info float-right">{{
+                          currentUser.email
+                        }}</span>
                       </h6>
                     </div>
 
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Telefon:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ currentUser.phone }}</span>
+                        <span class="user__profile--info float-right">{{
+                          currentUser.phone
+                        }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Address:
-                        <span class="user__profile--info float-right">{{ getAddress }}</span>
+                        <span class="user__profile--info float-right">{{
+                          getAddress
+                        }}</span>
                       </h6>
                     </div>
                   </v-card-text>
@@ -80,34 +90,34 @@
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         ID:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ currentUser.login.uuid }}</span>
+                        <span class="user__profile--info float-right">{{
+                          currentUser.login.uuid
+                        }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Username:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ currentUser.login.username }}</span>
+                        <span class="user__profile--info float-right">{{
+                          currentUser.login.username
+                        }}</span>
                       </h6>
                     </div>
 
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Position:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getRandomProffesion }}</span>
+                        <span class="user__profile--info float-right">{{
+                          getRandomProffesion
+                        }}</span>
                       </h6>
                     </div>
                     <div class="text__block mb-2">
                       <h6 class="subtitle-2" color="deep-purple accent-4">
                         Registered:
-                        <span
-                          class="user__profile--info float-right"
-                        >{{ getUserRegistrationDate }}</span>
+                        <span class="user__profile--info float-right">{{
+                          getUserRegistrationDate
+                        }}</span>
                       </h6>
                     </div>
                   </v-card-text>
@@ -164,7 +174,7 @@ export default {
       ];
     },
     // Option 2 to get user
-/*     crrentUserNew(){
+    /*     crrentUserNew(){
       return this.$store.state.users.find(user => user.login.uuid == this.$route.params.id)
     }, */
     currentUser() {

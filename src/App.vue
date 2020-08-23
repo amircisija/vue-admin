@@ -23,12 +23,12 @@ export default {
 
   components: {
     HelloWorld,
-    AppNavigation,
+    AppNavigation
   },
 
   data: () => ({
     //
-  }),
+  })
 };
 </script>
 <style lang="scss">

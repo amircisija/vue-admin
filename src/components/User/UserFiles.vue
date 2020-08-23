@@ -6,6 +6,7 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item v-for="item in items2" :key="item.tab">
+
         <v-alert
           border="left"
           colored-border
@@ -23,6 +24,7 @@
             >{{ item.name }}</a>
           </p>
         </div>
+
       </v-tab-item>
     </v-tabs-items>
   </div>

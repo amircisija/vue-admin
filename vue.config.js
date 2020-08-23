@@ -15,6 +15,7 @@ module.exports = {
   },
 
   pwa: {
-    themeColor: '#BD10E0'
+    themeColor: "#BD10E0",
+    name: "Vue Admin Hiroi"
   }
 };

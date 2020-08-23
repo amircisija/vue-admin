@@ -3,7 +3,7 @@
     <v-card-text v-if="user.picture" class="mb-4">
       <div
         class="is__active--indicator"
-        v-bind:class="(user.isActive ? 'active__class' : 'not__active__class')"
+        v-bind:class="user.isActive ? 'active__class' : 'not__active__class'"
       >
         <span></span>
       </div>
@@ -15,7 +15,7 @@
       <div>{{ user.position }}</div>
 
       <h3>
-        <span v-if="user.parentName">{{user.parentName}}</span>
+        <span v-if="user.parentName">{{ user.parentName }}</span>
         <span v-else>Empty</span>
       </h3>
     </v-card-text>
@@ -40,7 +40,9 @@
       </v-list-item-group>
     </v-list>
     <v-card-actions>
-      <v-btn text color="deep-purple accent-4" @click="handleSelectUser(user)">View details</v-btn>
+      <v-btn text color="deep-purple accent-4" @click="handleSelectUser(user)"
+        >View details</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>
