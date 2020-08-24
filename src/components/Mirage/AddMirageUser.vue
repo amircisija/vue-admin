@@ -51,7 +51,10 @@
                           </v-col>
                         </v-row>
                         <v-row>
-                          <v-col cols="12" lg="6" v-if="user">
+                          <v-col cols="12">
+                            <h3 class="mb-0 overline">General Information</h3>
+                          </v-col>
+                          <v-col cols="12" lg="6">
                             <v-menu v-model="menu1" :close-on-content-click="true" max-width="290">
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
@@ -67,7 +70,7 @@
                               <v-date-picker v-model="user.startDate" @change="menu1 = false"></v-date-picker>
                             </v-menu>
                           </v-col>
-                          <v-col cols="12" lg="6" v-if="user">
+                          <v-col cols="12" lg="6">
                             <v-menu v-model="menu2" :close-on-content-click="true" max-width="290">
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
@@ -80,7 +83,7 @@
                                   @click:clear="dateEnding = null"
                                 ></v-text-field>
                               </template>
-                              <v-date-picker v-model="user.endDate" @change="menu1 = false"></v-date-picker>
+                              <v-date-picker v-model="user.endDate" @change="menu2 = false"></v-date-picker>
                             </v-menu>
                           </v-col>
                         </v-row>
@@ -270,6 +273,8 @@ export default {
         medium: null,
         thumbnail: null
       },
+      startDate: new Date().toISOString().substr(0, 10),
+      endDate: new Date().toISOString().substr(0, 10),
       email: null,
       phone: null,
       name: {
@@ -287,13 +292,13 @@ export default {
   }),
   computed: {
     computedStartingDate() {
-      return this.dateStarting
-        ? moment(this.dateStarting).format("DD.MM.YYYY")
+      return this.user.startDate
+        ? moment(this.user.startDate).format("DD.MM.YYYY")
         : "";
     },
     computedEndingDate() {
-      return this.dateEnding
-        ? moment(this.dateEnding).format("DD.MM.YYYY")
+      return this.user.endDate
+        ? moment(this.user.endDate).format("DD.MM.YYYY")
         : "";
     }
   },
@@ -319,8 +324,8 @@ export default {
             medium: this.user.picture.large,
             thumbnail: this.user.picture.large
           },
-          startDate: this.computedStartingDate,
-          endDate: this.computedEndingDate
+          startDate: this.user.startDate,
+          endDate: this.user.endDate
         });
         console.log(response.data);
       });
