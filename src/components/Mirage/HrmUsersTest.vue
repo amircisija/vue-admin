@@ -12,12 +12,12 @@
       <v-list-item-avatar tile size="80" color="grey" class="card__avatar">
         <v-img :src="user.picture.thumbnail"></v-img>
       </v-list-item-avatar>
-      <div>{{ user.position }}</div>
+      <div class="mb-2">{{ user.position }}</div>
 
-      <h3>
-        <span v-if="user.parentName">{{ user.parentName }}</span>
-        <span v-else>Empty</span>
-      </h3>
+      <h4>
+        Contract ends
+        <span>{{ userFormatedDate }}</span>
+      </h4>
     </v-card-text>
     <v-list dense v-if="user.picture">
       <v-list-item-group color="primary">
@@ -45,6 +45,7 @@
   </v-card>
 </template>
 <script>
+import moment from "moment";
 export default {
   name: "HrmUserTest",
   props: {
@@ -68,6 +69,11 @@ export default {
     }
   },
   computed: {
+    userFormatedDate() {
+      return this.user.endDate
+        ? moment(this.user.endDate).format("DD.MM.YYYY")
+        : "";
+    },
     chosenProf() {
       return this.getRandomProffesion();
     },

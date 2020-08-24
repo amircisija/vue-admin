@@ -20,6 +20,15 @@
                     <v-row>
                       <v-col cols="12" sm="12">
                         <v-card-text class="user__profile--info--wrapper">
+                          <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                          <transition name="slide-up" mode="in-out">
+                            <v-progress-linear
+                              color="green darken-1"
+                              rounded
+                              :value="progressValue"
+                            ></v-progress-linear>
+                          </transition>
+                          <v-divider class="mb-5"></v-divider>
                           <div class="text__block mb-2">
                             <h6 class="subtitle-2" color="deep-purple accent-4">ID:</h6>
                             <span class="user__profile--info">{{ user.id }}</span>
@@ -63,7 +72,7 @@
                 <v-col></v-col>
               </v-row>
             </v-col>
-            <v-col cols="12" sm="7">
+            <v-col cols="12" sm="10">
               <v-row>
                 <v-col cols="12" sm="6">
                   <v-alert
@@ -78,12 +87,6 @@
                     Users Contract ends in
                     {{ getDifferenceFromDates }} days
                   </v-alert>
-                </v-col>
-                <v-col>
-                  <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
-                  <transition name="slide-up" mode="in-out">
-                    <v-progress-linear color="green darken-1" rounded :value="progressValue"></v-progress-linear>
-                  </transition>
                 </v-col>
               </v-row>
               <v-row class="mb-0 pb-0">
@@ -291,7 +294,7 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col cols="12" sm="3">
+            <v-col cols="12" sm="12" class="border-top">
               <v-row>
                 <v-col>
                   <v-card-text>
@@ -494,6 +497,9 @@ export default {
 }
 .border-right {
   border-right: 1px solid rgb(238, 238, 238);
+}
+.border-top {
+  border-top: 1px solid rgb(238, 238, 238);
 }
 .form__row {
   background: #fafafa;

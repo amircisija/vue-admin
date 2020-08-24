@@ -22,6 +22,12 @@
               <v-col cols="12" sm="2" class="text-center border-right pr-0 pt-0">
                 <v-card-text>
                   <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
+
+                  <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                  <transition name="slide-up" mode="in-out">
+                    <v-progress-linear color="green darken-1" rounded :value="progressValue"></v-progress-linear>
+                  </transition>
+                  <v-divider class="mb-5"></v-divider>
                   <v-btn
                     color="deep-purple accent-4"
                     class="white--text"
@@ -33,7 +39,7 @@
               </v-col>
               <v-col cols="12" sm="10">
                 <v-row>
-                  <v-col cols="12" sm="6">
+                  <v-col cols="12" sm="4">
                     <v-alert
                       transition="scale-transition"
                       v-if="getDifferenceFromDates"
@@ -46,12 +52,6 @@
                       Users Contract ends in
                       {{ getDifferenceFromDates }} days
                     </v-alert>
-                  </v-col>
-                  <v-col>
-                    <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
-                    <transition name="slide-up" mode="in-out">
-                      <v-progress-linear color="green darken-1" rounded :value="progressValue"></v-progress-linear>
-                    </transition>
                   </v-col>
                 </v-row>
                 <v-row class="mb-0 pb-0">
