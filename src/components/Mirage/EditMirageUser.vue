@@ -5,7 +5,7 @@
         <v-btn text color="deep-purple accent-4" class="mb-4" @click="handleSelectUser(user)">
           <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
         </v-btn>
-        <h2>Profile</h2>
+        <h2>Edit Profile</h2>
       </v-col>
     </v-row>
     <v-row>
@@ -89,10 +89,7 @@
               <v-row class="mb-0 pb-0">
                 <v-col class="mb-0 pb-0">
                   <v-card-text class="mb-0 pb-0">
-                    <h4 class="text-h5 text-deep-purple">
-                      <v-icon color="purple darken-2">mdi-account</v-icon>
-                      {{ currentUserFullName }}
-                    </h4>
+                    <h4 class="text-h5">{{ currentUserFullName }}</h4>
                     <v-divider class="mt-2"></v-divider>
                     <v-container>
                       <v-form @submit.prevent :disabled="loading">
