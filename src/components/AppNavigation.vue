@@ -1,17 +1,11 @@
 <template>
   <div>
-    <v-navigation-drawer
-      v-model="drawer"
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" :clipped="$vuetify.breakpoint.lgAndUp" app>
       <v-list dense>
         <template v-for="item in items">
           <v-row v-if="item.heading" :key="item.heading" align="center">
             <v-col cols="6">
-              <v-subheader v-if="item.heading"
-                >{{ item.heading }} C</v-subheader
-              >
+              <v-subheader v-if="item.heading">{{ item.heading }} C</v-subheader>
             </v-col>
             <v-col cols="6" class="text-center">
               <a href="#!" class="body-2 black--text">EDIT</a>
@@ -40,9 +34,11 @@
               </v-list-item-action>
               <v-list-item-content>
                 <v-list-item-title>
-                  <router-link :to="child.link" class="navigation__link">{{
+                  <router-link :to="child.link" class="navigation__link">
+                    {{
                     child.text
-                  }}</router-link>
+                    }}
+                  </router-link>
                 </v-list-item-title>
               </v-list-item-content>
             </v-list-item>
@@ -53,9 +49,11 @@
             </v-list-item-action>
             <v-list-item-content>
               <v-list-item-title>
-                <router-link :to="item.link" class="navigation__link">{{
+                <router-link :to="item.link" class="navigation__link">
+                  {{
                   item.text
-                }}</router-link>
+                  }}
+                </router-link>
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
@@ -63,12 +61,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
-      app
-      color="blue darken-3"
-      dark
-    >
+    <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="blue darken-3" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title style="width: 300px" class="ml-0 pl-4">
         <span class="hidden-sm-and-down">{{ appTitle }}</span>
@@ -90,10 +83,7 @@
       </v-btn>
       <v-btn icon large>
         <v-avatar size="32px" item>
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
-          ></v-img>
+          <v-img src="https://cdn.vuetifyjs.com/images/logos/logo.svg" alt="Vuetify"></v-img>
         </v-avatar>
       </v-btn>
     </v-app-bar>
@@ -109,41 +99,25 @@
             <v-col class="align-center justify-space-between" cols="12">
               <v-row align="center" class="mr-0">
                 <v-avatar size="40px" class="mx-3">
-                  <img
-                    src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
-                    alt
-                  />
+                  <img src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png" alt />
                 </v-avatar>
                 <v-text-field placeholder="Name"></v-text-field>
               </v-row>
             </v-col>
             <v-col cols="6">
-              <v-text-field
-                prepend-icon="mdi-account-card-details-outline"
-                placeholder="Company"
-              ></v-text-field>
+              <v-text-field prepend-icon="mdi-account-card-details-outline" placeholder="Company"></v-text-field>
             </v-col>
             <v-col cols="6">
               <v-text-field placeholder="Job title"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-mail"
-                placeholder="Email"
-              ></v-text-field>
+              <v-text-field prepend-icon="mdi-mail" placeholder="Email"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field
-                type="tel"
-                prepend-icon="mdi-phone"
-                placeholder="(000) 000 - 0000"
-              ></v-text-field>
+              <v-text-field type="tel" prepend-icon="mdi-phone" placeholder="(000) 000 - 0000"></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field
-                prepend-icon="mdi-text"
-                placeholder="Notes"
-              ></v-text-field>
+              <v-text-field prepend-icon="mdi-text" placeholder="Notes"></v-text-field>
             </v-col>
           </v-row>
         </v-container>
@@ -168,7 +142,7 @@ export default {
     drawer: null,
     items: [
       { icon: "mdi-contacts", text: "Dashboard", link: "/" },
-      {
+      /*       {
         icon: "mdi-chevron-up",
         "icon-alt": "mdi-chevron-down",
         text: "Hrm",
@@ -177,7 +151,7 @@ export default {
           { icon: "mdi-account-group", text: "Employees", link: "/hrm" },
           { icon: "mdi-account-plus", text: "Add User", link: "/add-user" }
         ]
-      },
+      }, */
       {
         icon: "mdi-chevron-up",
         "icon-alt": "mdi-chevron-down",
