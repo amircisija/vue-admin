@@ -7,12 +7,7 @@ import vuetify from "./plugins/vuetify";
 import "./assets/scss/style.scss";
 import "@fortawesome/fontawesome-free/css/all.css";
 
-import {
-  Server,
-  Model,
-  belongsTo,
-  hasMany
-} from "miragejs";
+import { Server, Model, belongsTo, hasMany } from "miragejs";
 
 new Server({
   models: {
@@ -27,7 +22,8 @@ new Server({
 
   seeds(server) {
     server.db.loadData({
-      files: [{
+      files: [
+        {
           name: "file-1.pdf",
           userId: 4
         },
@@ -44,7 +40,8 @@ new Server({
           userId: 1
         }
       ],
-      departments: [{
+      departments: [
+        {
           text: "Sarajevo",
           address: "Test Address 99",
           municipality: "New City"
@@ -55,7 +52,8 @@ new Server({
           municipality: "Old City"
         }
       ],
-      users: [{
+      users: [
+        {
           gender: "female",
           name: {
             title: "Mrs",
@@ -97,7 +95,8 @@ new Server({
             salt: "hj46Je08",
             md5: "6db9a246a21ef1e06ec45094b3c2a009",
             sha1: "bb2021b73503034132407c5b73fe6c9fffbf4dfc",
-            sha256: "1a9ea064ed8843364c5e1ba7e1bfbe731ecc278f24fbf24ec545553e95a6601f"
+            sha256:
+              "1a9ea064ed8843364c5e1ba7e1bfbe731ecc278f24fbf24ec545553e95a6601f"
           },
           dob: {
             date: "1975-03-10T14:33:10.746Z",
@@ -160,7 +159,8 @@ new Server({
             salt: "uc5K04w6",
             md5: "073e881c8dc0a829ac4b450d22bd076c",
             sha1: "a6fdd59d670e7a08d5066b86936005e9dd6d8f1e",
-            sha256: "bd69afa2d6d4e38acd138b0b3f1fa8ea6ed06c54a5aed59dbe21d752166b5631"
+            sha256:
+              "bd69afa2d6d4e38acd138b0b3f1fa8ea6ed06c54a5aed59dbe21d752166b5631"
           },
           dob: {
             date: "1979-09-08T07:27:19.539Z",
@@ -224,7 +224,8 @@ new Server({
             salt: "UAlHE7kA",
             md5: "a690eb42bb4ad21e78e3cc4d9388aae9",
             sha1: "5591f8f1d6049a812e8af1658376b7b24329e511",
-            sha256: "b431bb2b046c28a6d5ef103b814eb6afe2651875ae8703a5c5b556545181d258"
+            sha256:
+              "b431bb2b046c28a6d5ef103b814eb6afe2651875ae8703a5c5b556545181d258"
           },
           dob: {
             date: "1959-12-25T19:36:21.099Z",
@@ -288,7 +289,8 @@ new Server({
             salt: "IsKOZ6AH",
             md5: "d2edccee5447bb29a44d092e395fe601",
             sha1: "f284c2b93edefaf8e4cf00a69bd27da9a6563f6e",
-            sha256: "eccbf53804a3a46ad1572e71544a03eae9194b04bf4c61982f74eb102b6eec01"
+            sha256:
+              "eccbf53804a3a46ad1572e71544a03eae9194b04bf4c61982f74eb102b6eec01"
           },
           dob: {
             date: "1962-06-26T18:38:05.631Z",
@@ -326,9 +328,7 @@ new Server({
 
     this.get("/api/files", (schema, request) => {
       const {
-        queryParams: {
-          userId
-        }
+        queryParams: { userId }
       } = request;
 
       return schema.files.where({
@@ -340,18 +340,20 @@ new Server({
     this.post("/api/users", (schema, request) => {
       let user = JSON.parse(request.requestBody);
       console.log(user);
-      return schema.db.users.insert([{
-        name: {
-          first: user.name.first,
-          last: user.name.last
-        },
+      return schema.db.users.insert([
+        {
+          name: {
+            first: user.name.first,
+            last: user.name.last
+          },
 
-        picture: {
-          large: "https://randomuser.me/api/portraits/women/40.jpg",
-          medium: "https://randomuser.me/api/portraits/med/women/40.jpg",
-          thumbnail: "https://randomuser.me/api/portraits/thumb/women/40.jpg"
+          picture: {
+            large: "https://randomuser.me/api/portraits/women/40.jpg",
+            medium: "https://randomuser.me/api/portraits/med/women/40.jpg",
+            thumbnail: "https://randomuser.me/api/portraits/thumb/women/40.jpg"
+          }
         }
-      }]);
+      ]);
     });
 
     this.patch("/api/users/:id", (schema, request) => {

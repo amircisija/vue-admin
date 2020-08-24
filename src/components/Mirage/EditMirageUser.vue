@@ -67,12 +67,23 @@
               <v-row>
                 <v-col cols="12" sm="6">
                   <v-alert
-                    v-if="getDifferenceFromDates < 31"
+                    transition="scale-transition"
+                    v-if="getDifferenceFromDates"
                     border="bottom"
                     colored-border
-                    type="warning"
+                    dense
+                    :type="alertType"
                     elevation="2"
-                  >Users Contract ends in {{ getDifferenceFromDates }} days</v-alert>
+                  >
+                    Users Contract ends in
+                    {{ getDifferenceFromDates }} days
+                  </v-alert>
+                </v-col>
+                <v-col>
+                  <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                  <transition name="slide-up" mode="in-out">
+                    <v-progress-linear color="green darken-1" rounded :value="progressValue"></v-progress-linear>
+                  </transition>
                 </v-col>
               </v-row>
               <v-row class="mb-0 pb-0">
@@ -321,7 +332,8 @@ export default {
       loading: false,
       firstname: null,
       proffesion: ["Call Agent", "Support", "Developer"],
-      userId: this.$route.params.id
+      userId: this.$route.params.id,
+      progressValue: 0
     };
   },
   methods: {
@@ -346,6 +358,9 @@ export default {
 
       this.loader = null;
     }
+  },
+  created() {
+    setTimeout(() => (this.progressValue = 50), 400);
   },
   computed: {
     computedStartingDate() {
@@ -374,7 +389,16 @@ export default {
 
       difference = Math.abs(difference);
 
+      if (difference < 5) {
+        this.alertType = "error";
+        return difference;
+      }
       if (difference < 30) {
+        this.alertType = "warning";
+        return difference;
+      }
+      if (difference > 30) {
+        this.alertType = "success";
         return difference;
       }
 
