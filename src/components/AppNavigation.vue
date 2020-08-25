@@ -212,4 +212,8 @@ export default {
 .navigation__link--child {
   padding-left: 30px !important;
 }
+.v-toolbar {
+  background: rgb(103,58,183);
+  background: linear-gradient(90deg, rgba(103,58,183,1) 0%, rgba(103,58,183,1) 35%, rgba(162,0,255,1) 100%);
+}
 </style>

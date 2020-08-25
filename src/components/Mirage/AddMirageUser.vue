@@ -45,7 +45,6 @@
                               color="success"
                               @click="addUser(user)"
                             >Add User</v-btn>
-                            <v-btn @click="reset">Reset form</v-btn>
                           </v-col>
                         </v-row>
                         <v-row>

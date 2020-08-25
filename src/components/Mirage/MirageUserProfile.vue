@@ -9,7 +9,9 @@
           @click="handleSelectUser()"
           :user="user"
         >
-          <v-icon color="deep-purple accent-4" small class="mr-2">mdi-chevron-left</v-icon>Go Back
+          <v-icon color="deep-purple accent-4" small class="mr-2"
+            >mdi-chevron-left</v-icon
+          >Go back
         </v-btn>
         <h2>Profile {{ user.name.first }} {{ user.name.last }}</h2>
       </v-col>
@@ -17,23 +19,36 @@
     <v-row>
       <v-col>
         <v-card flat>
-          <v-container>
+          <v-container fluid>
             <v-row>
-              <v-col cols="12" sm="2" class="text-center border-right pr-0 pt-0">
+              <v-col
+                cols="12"
+                sm="2"
+                class="text-center border-right pr-0 pt-0"
+              >
                 <v-card-text>
                   <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
 
-                  <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                  <h4 class="mb-2 overline">
+                    Profile Completion {{ progressValue }}%
+                  </h4>
                   <transition name="slide-up" mode="in-out">
-                    <v-progress-linear color="green darken-1" rounded :value="progressValue"></v-progress-linear>
+                    <v-progress-linear
+                      color="green darken-1"
+                      rounded
+                      :value="progressValue"
+                    ></v-progress-linear>
                   </transition>
                   <v-divider class="mb-5"></v-divider>
                   <v-btn
                     color="deep-purple accent-4"
                     class="white--text"
+                    text
                     @click="editCurrentUser(user)"
                   >
-                    <v-icon color="white" small class="mr-2">mdi-account-edit</v-icon>Edit
+                    <v-icon color="deep-purple accent-4" small class="mr-2"
+                      >mdi-account-edit</v-icon
+                    >Edit User
                   </v-btn>
                 </v-card-text>
               </v-col>
@@ -54,94 +69,159 @@
                     </v-alert>
                   </v-col>
                 </v-row>
-                <v-row class="mb-0 pb-0">
-                  <v-col class="mb-0 pb-0">
-                    <v-card-text class="mb-0 pb-0">
+                <v-row class="mb-0 py-0">
+                  <v-col class="mb-0 py-0">
+                    <v-card-text class="mb-0 py-0">
                       <h4 class="text-h5">{{ currentUserFullName }}</h4>
                       <v-divider class="mt-2"></v-divider>
                     </v-card-text>
                   </v-col>
                 </v-row>
-                <v-row class="py-4 my-0 px-2">
-                  <v-col class="py-0 my-0 mb-0 px-5">
-                    <h3 class="mb-0 overline">General Information</h3>
-                  </v-col>
-                </v-row>
-                <v-row class="pt-0">
-                  <v-col cols="12" sm="6" class="pt-0">
-                    <v-card-text class="user__profile--info--wrapper pt-0">
-                      <div class="text__block mb-2">
-                        <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Date of Birth:
-                          <span
-                            class="user__profile--info float-right"
-                          >{{ getUserDateOfBirth }}</span>
-                        </h6>
-                      </div>
-                      <div class="text__block mb-2">
-                        <h6 class="subtitle-2" color="deep-purple accent-4">
-                          E-Mail:
-                          <span class="user__profile--info float-right">{{ user.email }}</span>
-                        </h6>
-                      </div>
 
+                <v-row class="pt-0">
+                  <v-col cols="12" sm="6">
+                    <v-card-text class="user__profile--info--wrapper">
+                      <h3 class="mb-0 overline">General Information</h3>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Telefon:
-                          <span class="user__profile--info float-right">{{ user.phone }}</span>
+                          RID
+                          <span class="user__profile--info float-right">
+                            {{ user.rid }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Address:
-                          <span class="user__profile--info float-right">{{ getAddress }}</span>
+                          Registered
+                          <span class="user__profile--info float-right">
+                            {{ getUserRegistrationDate }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Municipality:
-                          <span
-                            class="user__profile--info float-right"
-                          >{{ user.location.municipality }}</span>
+                          Contract started
+                          <span class="user__profile--info float-right">
+                            {{ computedStartingDate }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Contract ends
+                          <span class="user__profile--info float-right">
+                            {{ computedEndingDate }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Position
+                          <span class="user__profile--info float-right">
+                            {{ user.position }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Bank
+                          <span class="user__profile--info float-right">
+                            {{ user.bank }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Bank ID
+                          <span class="user__profile--info float-right">
+                            {{ user.bankId }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Travel expenses
+                          <span class="user__profile--info float-right">
+                            {{ user.travelExpenses ? "Yes" : "No" }}
+                          </span>
                         </h6>
                       </div>
                     </v-card-text>
                   </v-col>
                   <v-col cols="12" sm="6">
                     <v-card-text class="user__profile--info--wrapper">
+                      <h3 class="mb-0 overline">Personal Information</h3>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          ID:
-                          <span class="user__profile--info float-right">{{ user.login.uuid }}</span>
+                          Date of Birth:
+                          <span class="user__profile--info float-right">
+                            {{ getUserDateOfBirth }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Username:
-                          <span
-                            class="user__profile--info float-right"
-                          >{{ user.login.username }}</span>
+                          Name of Parent:
+                          <span class="user__profile--info float-right">
+                            {{ user.parentName }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          JMBG
+                          <span class="user__profile--info float-right">
+                            {{ user.jmbg }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          E-Mail:
+                          <span class="user__profile--info float-right">
+                            {{ user.email }}
+                          </span>
                         </h6>
                       </div>
 
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Position:
-                          <span class="user__profile--info float-right">{{ user.position }}</span>
+                          Telefon:
+                          <span class="user__profile--info float-right">
+                            {{ user.phone }}
+                          </span>
                         </h6>
                       </div>
                       <div class="text__block mb-2">
                         <h6 class="subtitle-2" color="deep-purple accent-4">
-                          Registered:
-                          <span
-                            class="user__profile--info float-right"
-                          >{{ getUserRegistrationDate }}</span>
+                          Address:
+                          <span class="user__profile--info float-right">
+                            {{ getAddress }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          Municipality:
+                          <span class="user__profile--info float-right">
+                            {{ user.location.municipality }}
+                          </span>
+                        </h6>
+                      </div>
+                      <div class="text__block mb-2">
+                        <h6 class="subtitle-2" color="deep-purple accent-4">
+                          City:
+                          <span class="user__profile--info float-right">
+                            {{ user.location.city }}
+                          </span>
                         </h6>
                       </div>
                     </v-card-text>
                   </v-col>
                 </v-row>
               </v-col>
+
+
             </v-row>
           </v-container>
         </v-card>
@@ -151,7 +231,7 @@
       <v-col cols="12">
         <v-card flat>
           <v-card-text>
-            <h4 class="text-h5 text-deep-purple">User Files</h4>
+            <h4 class="text-h5">User Files</h4>
             <v-divider class="mt-2"></v-divider>
             <user-files :user="user"></user-files>
           </v-card-text>
@@ -173,7 +253,7 @@ export default {
       proffesion: ["Call Agent", "Support", "Developer"],
       userId: this.$route.params.id,
       progressValue: 0,
-      alertType: null
+      alertType: ""
     };
   },
   methods: {
@@ -198,7 +278,16 @@ export default {
     user() {
       return this.users.find(v => v.id == this.$route.params.id) || {};
     },
-
+    computedStartingDate() {
+      return this.user.startDate
+        ? moment(this.user.startDate).format("DD.MM.YYYY")
+        : "";
+    },
+    computedEndingDate() {
+      return this.user.endDate
+        ? moment(this.user.endDate).format("DD.MM.YYYY")
+        : "";
+    },
     getDifferenceFromDates() {
       const dateB = moment(this.user.startDate);
       const dateC = moment(this.user.endDate);
@@ -233,17 +322,8 @@ export default {
     },
     getAddress() {
       return (
-        this.user.location.street.name +
-        " " +
-        this.user.location.street.number +
-        ", " +
-        this.user.location.city
+        this.user.location.street.name + " " + this.user.location.street.number
       );
-    },
-    getRandomProffesion() {
-      return this.proffesion[
-        Math.floor(Math.random() * this.proffesion.length)
-      ];
     }
   }
   /*   mounted() {

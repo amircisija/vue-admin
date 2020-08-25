@@ -79,12 +79,9 @@
 </template>
 <script>
 import axios from "axios";
-import AppDepartment from "@/components/Departments/AppDepartment";
 export default {
   name: "Departments",
-  components: {
-    AppDepartment
-  },
+
   data: () => ({
     departments: [],
     department: null,

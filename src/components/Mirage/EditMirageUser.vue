@@ -2,8 +2,15 @@
   <v-container v-if="user" fluid>
     <v-row>
       <v-col>
-        <v-btn text color="deep-purple accent-4" class="mb-4" @click="handleSelectUser(user)">
-          <v-icon color="purple darken-2" small class="mr-2">mdi-chevron-left</v-icon>Go Back
+        <v-btn
+          text
+          color="deep-purple accent-4"
+          class="mb-4"
+          @click="handleSelectUser(user)"
+        >
+          <v-icon color="purple darken-2" small class="mr-2"
+            >mdi-chevron-left</v-icon
+          >Go Back
         </v-btn>
         <h2>Edit Profile</h2>
       </v-col>
@@ -16,11 +23,16 @@
               <v-row>
                 <v-col class="pt-0">
                   <v-card-text>
-                    <v-img :src="user.picture.large" class="mb-3 rounded"></v-img>
+                    <v-img
+                      :src="user.picture.large"
+                      class="mb-3 rounded mx-auto text-center img-fluid"
+                    ></v-img>
                     <v-row>
                       <v-col cols="12" sm="12">
                         <v-card-text class="user__profile--info--wrapper">
-                          <h4 class="mb-2 overline">Profile Completion {{ progressValue }}%</h4>
+                          <h4 class="mb-2 overline">
+                            Profile Completion {{ progressValue }}%
+                          </h4>
                           <transition name="slide-up" mode="in-out">
                             <v-progress-linear
                               color="green darken-1"
@@ -30,46 +42,78 @@
                           </transition>
                           <v-divider class="mb-5"></v-divider>
                           <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">ID:</h6>
-                            <span class="user__profile--info">{{ user.id }}</span>
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              ID:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              user.id
+                            }}</span>
                           </div>
                           <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Date of Birth:</h6>
-                            <span class="user__profile--info">{{ getUserDateOfBirth }}</span>
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Date of Birth:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              getUserDateOfBirth
+                            }}</span>
                           </div>
                           <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">E-Mail:</h6>
-                            <span class="user__profile--info">{{ user.email }}</span>
-                          </div>
-
-                          <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Telefon:</h6>
-                            <span class="user__profile--info">{{ user.phone }}</span>
-                          </div>
-                          <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Address:</h6>
-                            <span class="user__profile--info">{{ getAddress }}</span>
-                          </div>
-
-                          <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Username:</h6>
-                            <span class="user__profile--info">{{ user.login.username }}</span>
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              E-Mail:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              user.email
+                            }}</span>
                           </div>
 
                           <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Position:</h6>
-                            <span class="user__profile--info">{{ getRandomProffesion }}</span>
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Telefon:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              user.phone
+                            }}</span>
                           </div>
                           <div class="text__block mb-2">
-                            <h6 class="subtitle-2" color="deep-purple accent-4">Registered:</h6>
-                            <span class="user__profile--info">{{ getUserRegistrationDate }}</span>
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Address:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              getAddress
+                            }}</span>
+                          </div>
+
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Username:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              user.login.username
+                            }}</span>
+                          </div>
+
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Position:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              getRandomProffesion
+                            }}</span>
+                          </div>
+                          <div class="text__block mb-2">
+                            <h6 class="subtitle-2" color="deep-purple accent-4">
+                              Registered:
+                            </h6>
+                            <span class="user__profile--info">{{
+                              getUserRegistrationDate
+                            }}</span>
                           </div>
                         </v-card-text>
                       </v-col>
                     </v-row>
                   </v-card-text>
                 </v-col>
-                <v-col></v-col>
+
               </v-row>
             </v-col>
             <v-col cols="12" sm="10">
@@ -110,16 +154,23 @@
                               :disabled="loading"
                               color="success"
                               @click="updateUser(user)"
-                            >Update User</v-btn>
+                              >Update User</v-btn
+                            >
                           </v-col>
                         </v-row>
                         <v-row>
                           <v-col cols="12">
-                            <h3>Contract ends in {{ getDifferenceFromDates }} days</h3>
+                            <h3>
+                              Contract ends in {{ getDifferenceFromDates }} days
+                            </h3>
                             <h4>{{ getContractDates }}</h4>
                           </v-col>
                           <v-col cols="12" lg="6" v-if="user">
-                            <v-menu v-model="menu1" :close-on-content-click="true" max-width="290">
+                            <v-menu
+                              v-model="menu1"
+                              :close-on-content-click="true"
+                              max-width="290"
+                            >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
                                   :value="computedStartingDate"
@@ -131,11 +182,18 @@
                                   @click:clear="dateStarting = null"
                                 ></v-text-field>
                               </template>
-                              <v-date-picker v-model="user.startDate" @change="menu1 = false"></v-date-picker>
+                              <v-date-picker
+                                v-model="user.startDate"
+                                @change="menu1 = false"
+                              ></v-date-picker>
                             </v-menu>
                           </v-col>
                           <v-col cols="12" lg="6" v-if="user">
-                            <v-menu v-model="menu2" :close-on-content-click="true" max-width="290">
+                            <v-menu
+                              v-model="menu2"
+                              :close-on-content-click="true"
+                              max-width="290"
+                            >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
                                   :value="computedEndingDate"
@@ -147,7 +205,10 @@
                                   @click:clear="dateEnding = null"
                                 ></v-text-field>
                               </template>
-                              <v-date-picker v-model="user.endDate" @change="menu1 = false"></v-date-picker>
+                              <v-date-picker
+                                v-model="user.endDate"
+                                @change="menu1 = false"
+                              ></v-date-picker>
                             </v-menu>
                           </v-col>
                         </v-row>
@@ -156,10 +217,18 @@
                             <h3 class="mb-0 overline">General Information</h3>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-select :items="genderItems" v-model="user.gender" label="Gender"></v-select>
+                            <v-select
+                              :items="genderItems"
+                              v-model="user.gender"
+                              label="Gender"
+                            ></v-select>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-select :items="proffesion" v-model="user.position" label="Position"></v-select>
+                            <v-select
+                              :items="proffesion"
+                              v-model="user.position"
+                              label="Position"
+                            ></v-select>
                           </v-col>
                           <v-col cols="12" sm="6">
                             <v-text-field
@@ -186,10 +255,20 @@
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-text-field :counter="20" v-model="user.jmbg" label="JMBG" required></v-text-field>
+                            <v-text-field
+                              :counter="20"
+                              v-model="user.jmbg"
+                              label="JMBG"
+                              required
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-text-field :counter="20" v-model="user.bank" label="Bank" required></v-text-field>
+                            <v-text-field
+                              :counter="20"
+                              v-model="user.bank"
+                              label="Bank"
+                              required
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6">
                             <v-text-field
@@ -213,7 +292,12 @@
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6">
-                            <v-text-field :counter="30" v-model="user.email" label="Email" required></v-text-field>
+                            <v-text-field
+                              :counter="30"
+                              v-model="user.email"
+                              label="Email"
+                              required
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="4">
                             <v-text-field
@@ -275,7 +359,10 @@
                               color="success"
                               v-model="user.travelExpenses"
                               :label="
-                                `Travel Expenses: ${user.travelExpenses.toString()}`
+                                `Travel Expenses: ${(user.travelExpenses
+                                  ? 'Yes'
+                                  : 'No'
+                                ).toString()}`
                               "
                             ></v-switch>
                           </v-col>
@@ -285,7 +372,8 @@
                               :disabled="loading"
                               color="success"
                               @click="updateUser(user)"
-                            >Update User</v-btn>
+                              >Update User</v-btn
+                            >
                           </v-col>
                         </v-row>
                       </v-form>
