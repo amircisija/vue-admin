@@ -17,7 +17,8 @@ export default new Vuex.Store({
     users: null,
     localUsers: null,
     selectedUser: null,
-    departments: null
+    departments: null,
+    projects: null
   },
   mutations: {
     selectUser(state, user) {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     },
     saveDepartments(state, departments) {
       state.departments = departments;
+    },
+    saveProjects(state, departments) {
+      state.projects = projects;
     },
     deleteUser(state) {
       state.selectedUser = null;

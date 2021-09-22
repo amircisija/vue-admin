@@ -170,6 +170,11 @@ export default {
         icon: "mdi-home-city-outline",
         text: "Departments",
         link: "/departments"
+      },
+      {
+        icon: "mdi-home-city-outline",
+        text: "Projects",
+        link: "/projects"
       }
     ],
     items2: [

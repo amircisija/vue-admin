@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Mirage from "../views/Mirage.vue";
 import Hrm from "../views/Hrm.vue";
+import Projects from "../views/Projects.vue";
 import UserProfile from "../components/User/UserProfile.vue";
 import MirageUserProfile from "../components/Mirage/MirageUserProfile.vue";
 Vue.use(VueRouter);
@@ -17,6 +18,11 @@ const routes = [
     path: "/mirage",
     name: "Mirage",
     component: Mirage
+  },
+  {
+    path: "/projects",
+    name: "Projects",
+    component: Projects
   },
   {
     path: "/departments",

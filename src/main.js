@@ -52,6 +52,13 @@ new Server({
           municipality: "Old City"
         }
       ],
+      projects: [
+        {
+          id: "1",
+          text: "Project 1",
+          description: "Test Address 99"
+        }
+      ],
       users: [
         {
           rid: "CM0001",
@@ -356,6 +363,12 @@ new Server({
     this.get("/api/departments", schema => {
       return schema.db.departments;
     });
+
+    this.get("/api/projects", schema => {
+      return schema.db.projects
+    })
+
+
   }
 });
 
